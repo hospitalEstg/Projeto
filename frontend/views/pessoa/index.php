@@ -25,14 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'idPessoa',
             'Nome',
-            'Idade',
             'DataNascimento',
             'Morada',
-            //'Email:email',
-            //'NumUtenteSaude',
+            'NumUtenteSaude',
             //'NumIDCivil',
-            //'CedulaProfissional',
             //'TipoUtilizador',
+            //'idUser',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

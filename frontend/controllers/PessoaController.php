@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-
 use Yii;
 use common\models\Pessoa;
 use yii\data\ActiveDataProvider;
@@ -39,7 +38,6 @@ class PessoaController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Pessoa::find(),
         ]);
-
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
