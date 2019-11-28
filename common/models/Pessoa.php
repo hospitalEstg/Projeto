@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace app\models;
 
 use Yii;
 
@@ -9,20 +9,18 @@ use Yii;
  *
  * @property int $idPessoa
  * @property string $Nome
- * @property int $Idade
  * @property string $DataNascimento
  * @property string $Morada
- * @property string $Email
  * @property int $NumUtenteSaude
  * @property int $NumIDCivil
- * @property string $CedulaProfissional
  * @property string $TipoUtilizador
+ * @property int $idUser
  *
- * @property Alarme[] $alarmes
  * @property Consulta[] $consultas
+ * @property Consulta[] $consultas0
+ * @property Consulta[] $consultas1
  * @property MarcacaoConsulta[] $marcacaoConsultas
- * @property MarcacaoConsulta[] $marcacaoConsultas0
- * @property MarcacaoConsulta[] $marcacaoConsultas1
+ * @property User $user
  */
 class Pessoa extends \yii\db\ActiveRecord
 {
@@ -40,13 +38,13 @@ class Pessoa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'Nome', 'Idade', 'DataNascimento', 'Morada', 'Email', 'NumUtenteSaude', 'NumIDCivil', 'TipoUtilizador'], 'required'],
-            [['idPessoa', 'Idade', 'NumUtenteSaude', 'NumIDCivil'], 'integer'],
+            [['Nome', 'DataNascimento', 'Morada', 'NumUtenteSaude', 'NumIDCivil', 'TipoUtilizador', 'idUser'], 'required'],
             [['DataNascimento'], 'safe'],
+            [['NumUtenteSaude', 'NumIDCivil', 'idUser'], 'integer'],
             [['TipoUtilizador'], 'string'],
             [['Nome'], 'string', 'max' => 100],
-            [['Morada', 'Email', 'CedulaProfissional'], 'string', 'max' => 45],
-            [['idPessoa'], 'unique'],
+            [['Morada'], 'string', 'max' => 45],
+            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idUser' => 'id']],
         ];
     }
 
@@ -58,23 +56,13 @@ class Pessoa extends \yii\db\ActiveRecord
         return [
             'idPessoa' => 'Id Pessoa',
             'Nome' => 'Nome',
-            'Idade' => 'Idade',
             'DataNascimento' => 'Data Nascimento',
             'Morada' => 'Morada',
-            'Email' => 'Email',
             'NumUtenteSaude' => 'Num Utente Saude',
             'NumIDCivil' => 'Num Id Civil',
-            'CedulaProfissional' => 'Cedula Profissional',
             'TipoUtilizador' => 'Tipo Utilizador',
+            'idUser' => 'Id User',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAlarmes()
-    {
-        return $this->hasMany(Alarme::className(), ['Pessoa_idPessoa' => 'idPessoa']);
     }
 
     /**
@@ -82,7 +70,23 @@ class Pessoa extends \yii\db\ActiveRecord
      */
     public function getConsultas()
     {
-        return $this->hasMany(Consulta::className(), ['fk_Consulta_Medico' => 'idPessoa']);
+        return $this->hasMany(Consulta::className(), ['idFuncionario' => 'idPessoa']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConsultas0()
+    {
+        return $this->hasMany(Consulta::className(), ['idMedico' => 'idPessoa']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConsultas1()
+    {
+        return $this->hasMany(Consulta::className(), ['idUtente' => 'idPessoa']);
     }
 
     /**
@@ -96,16 +100,8 @@ class Pessoa extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMarcacaoConsultas0()
+    public function getUser()
     {
-        return $this->hasMany(MarcacaoConsulta::className(), ['Pessoa_idUtente' => 'idPessoa']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMarcacaoConsultas1()
-    {
-        return $this->hasMany(MarcacaoConsulta::className(), ['Pessoa_idMedico' => 'idPessoa']);
+        return $this->hasOne(User::className(), ['id' => 'idUser']);
     }
 }
