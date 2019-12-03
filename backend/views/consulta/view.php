@@ -33,11 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'DataConsulta',
             'TipoConsulta',
             'Descricao',
-            'Urgente',
             'Estado',
             'idMedico',
             'idFuncionario',
-            'idUtente',
+            'hora',
         ],
     ]) ?>
 

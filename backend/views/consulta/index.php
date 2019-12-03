@@ -13,41 +13,60 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-
     <p>
         <?= Html::a('Create Consulta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-  <?php  foreach($consulta as $value){
-
+  <?php  foreach($consultas as $consulta){
+            if($consulta->Estado ==0) {
           ?>
                            <table class="table table-striped table-bordered">
                            <tr>
                            <th> Descricao </th>
                            <th> Urgente </th>
-                            <th> editar </th>
+                            <th> Nome Utente </th>
+                            <th> Editar </th>
 
 
                            </tr>
                            <tr>
                            <td>
-                           <?= $value->DataConsulta; ?>
+                           <?= $consulta->Descricao; ?>
                            </td>
                             <td>
-                             <?= $value->Descricao; ?>
+                             <?= $consulta->Estado; ?>
                             </td>
+                           
 
 
                              <td>
-                                    <?= Html::a('Editar', ['update'], ['class' => 'btn btn-success']) ?>
-
+                                    <?= Html::a('Editar', ['update','idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                                    <?= Html::a('Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
 
                                                        </td>
 
                            </tr>
                            </table>
-                            <?php }
+                            <?php } }
                             ?>
+
+    <?php /*echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'idConsulta',
+            'DataConsulta',
+            'TipoConsulta',
+            'Descricao',
+            'Estado',
+            //'idMedico',
+            //'idFuncionario',
+            //'hora',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); */?>
 
 
 </div>

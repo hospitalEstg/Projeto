@@ -71,4 +71,12 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Pessoa::className(), ['idPessoa' => 'Pessoa_idPessoa']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPessoa()
+    {
+        return $this->hasOne(Pessoa::className(), ['idPessoa' => 'Pessoa_idPessoa']);
+    }
 }

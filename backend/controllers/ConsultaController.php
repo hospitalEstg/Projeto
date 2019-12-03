@@ -35,15 +35,14 @@ class ConsultaController extends Controller
      */
     public function actionIndex()
     {
-       /* $dataProvider = new ActiveDataProvider([
+        /*$dataProvider = new ActiveDataProvider([
             'query' => Consulta::find(),
-        ]);*/
+        ]); */
+    $consultas = Consulta::find()->all();
 
-         $consulta = Consulta::find()->all();
-
-              return $this->render('index', [
-                  'consulta' => $consulta,
-              ]);
+                return $this->render('index', [
+                    'consultas' => $consultas,
+                ]);
     }
 
     /**

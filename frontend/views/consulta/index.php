@@ -13,12 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <p>
+        <?= Html::a('Create Consulta', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
 
-
-    <?php echo GridView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
-
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -26,11 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'DataConsulta',
             'TipoConsulta',
             'Descricao',
-            'Urgente',
-            //'Estado',
+            'Estado',
             //'idMedico',
             //'idFuncionario',
-            //'idUtente',
+            //'hora',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

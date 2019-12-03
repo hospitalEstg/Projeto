@@ -18,15 +18,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Descricao')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Urgente')->textInput() ?>
-
     <?= $form->field($model, 'Estado')->textInput() ?>
 
     <?= $form->field($model, 'idMedico')->textInput() ?>
 
     <?= $form->field($model, 'idFuncionario')->textInput() ?>
 
-   <?= $form->field($model, 'idUtente')->hiddenInput(['Pessoa_idPessoa'])->label(false) ?>
+    <?= $form->field($model, 'hora')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

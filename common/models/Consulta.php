@@ -11,15 +11,13 @@ use Yii;
  * @property string $DataConsulta
  * @property string $TipoConsulta
  * @property string $Descricao
- * @property int $Urgente
  * @property int $Estado
  * @property int $idMedico
  * @property int $idFuncionario
- * @property int $idUtente
+ * @property string $hora
  *
  * @property Pessoa $funcionario
  * @property Pessoa $medico
- * @property Pessoa $utente
  * @property Fichatecnica[] $fichatecnicas
  * @property MarcacaoConsulta[] $marcacaoConsultas
  * @property Receita[] $receitas
@@ -40,13 +38,12 @@ class Consulta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['DataConsulta', 'TipoConsulta', 'Urgente', 'idMedico', 'idFuncionario'], 'required'],
-            [['DataConsulta'], 'safe'],
-            [['Urgente', 'Estado', 'idMedico', 'idFuncionario', 'idUtente'], 'integer'],
+            [['DataConsulta', 'TipoConsulta', 'idMedico', 'idFuncionario', 'hora'], 'required'],
+            [['DataConsulta', 'hora'], 'safe'],
+            [['Estado', 'idMedico', 'idFuncionario'], 'integer'],
             [['TipoConsulta', 'Descricao'], 'string', 'max' => 45],
             [['idFuncionario'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idFuncionario' => 'idPessoa']],
             [['idMedico'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idMedico' => 'idPessoa']],
-            [['idUtente'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idUtente' => 'idPessoa']],
         ];
     }
 
@@ -60,11 +57,10 @@ class Consulta extends \yii\db\ActiveRecord
             'DataConsulta' => 'Data Consulta',
             'TipoConsulta' => 'Tipo Consulta',
             'Descricao' => 'Descricao',
-            'Urgente' => 'Urgente',
             'Estado' => 'Estado',
             'idMedico' => 'Id Medico',
             'idFuncionario' => 'Id Funcionario',
-            'idUtente' => 'Id Utente',
+            'hora' => 'Hora',
         ];
     }
 
@@ -87,14 +83,6 @@ class Consulta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUtente()
-    {
-        return $this->hasOne(Pessoa::className(), ['idPessoa' => 'idUtente']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getFichatecnicas()
     {
         return $this->hasMany(Fichatecnica::className(), ['Consulta_idConsulta' => 'idConsulta']);
@@ -108,6 +96,7 @@ class Consulta extends \yii\db\ActiveRecord
         return $this->hasMany(MarcacaoConsulta::className(), ['Consulta_idConsulta' => 'idConsulta']);
     }
 
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -115,4 +104,13 @@ class Consulta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Receita::className(), ['Consulta_idConsulta' => 'idConsulta']);
     }
+
+     /**
+         * @return \yii\db\ActiveQuery
+         */
+        public function getMarcacao()
+        {
+            return $this->hasMany(MarcacaoConsulta::className(), ['Consulta_idConsulta' => 'idConsulta']);
+        }
+
 }

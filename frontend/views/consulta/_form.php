@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\Pessoa;
-use yii\helpers\VarDumper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Consulta */
@@ -21,9 +20,9 @@ use yii\helpers\VarDumper;
 
     <?= $form->field($model, 'Descricao')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Urgente')->textInput() ?>
-
     <?= $form->field($model, 'Estado')->textInput() ?>
+
+        <?= $form->field($model, 'hora')->textInput() ?>
 
 
   <?php $funcionario = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Funcionario'])->all(),'idPessoa','Nome');
@@ -32,14 +31,6 @@ use yii\helpers\VarDumper;
 
 <?php $medico = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Medico'])->all(),'idPessoa','Nome');
    echo $form->field($model, 'idMedico')->dropDownList($medico) ?>
-
-
- <?php $utente = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Utente'])->all(),'idPessoa','Nome');
-    echo $form->field($model, 'idUtente')->dropDownList($utente) ?>
-
-
-
-
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

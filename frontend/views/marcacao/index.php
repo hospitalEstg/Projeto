@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                              <?= $value->Urgente; ?>
                             </td>
                              <td>
-                                    <?= Html::a('Editar', ['update'], ['class' => 'btn btn-success']) ?>
+                                    <?= Html::a('Editar', ['update','idMarcacao_Consulta' => $value->idMarcacao_Consulta, 'Pessoa_idPessoa' =>$value->Pessoa_idPessoa ], ['class' => 'btn btn-success']) ?>
 
                                                        </td>
 

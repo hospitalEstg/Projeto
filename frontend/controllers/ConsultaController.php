@@ -4,8 +4,6 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Consulta;
-use common\models\Pessoa;
-
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -41,9 +39,6 @@ class ConsultaController extends Controller
             'query' => Consulta::find(),
         ]);
 
-
-
-
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -71,14 +66,12 @@ class ConsultaController extends Controller
     {
         $model = new Consulta();
 
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idConsulta]);
         }
 
         return $this->render('create', [
             'model' => $model,
-
         ]);
     }
 
