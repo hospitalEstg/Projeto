@@ -13,29 +13,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+
     <p>
         <?= Html::a('Create Consulta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+  <?php  foreach($consulta as $value){
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+          ?>
+                           <table class="table table-striped table-bordered">
+                           <tr>
+                           <th> Descricao </th>
+                           <th> Urgente </th>
+                            <th> editar </th>
 
-            'idConsulta',
-            'DataConsulta',
-            'TipoConsulta',
-            'Descricao',
-            'Urgente',
-            //'Estado',
-            //'idMedico',
-            //'idFuncionario',
-            //'idUtente',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                           </tr>
+                           <tr>
+                           <td>
+                           <?= $value->DataConsulta; ?>
+                           </td>
+                            <td>
+                             <?= $value->Descricao; ?>
+                            </td>
+
+
+                             <td>
+                                    <?= Html::a('Editar', ['update'], ['class' => 'btn btn-success']) ?>
+
+
+                                                       </td>
+
+                           </tr>
+                           </table>
+                            <?php }
+                            ?>
 
 
 </div>

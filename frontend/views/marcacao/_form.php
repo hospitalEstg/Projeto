@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Pessoa_idPessoa')->textInput() ?>
+    <?= $form->field($model, 'Pessoa_idPessoa')->hiddenInput(['value'=>Yii::$app->user->id])->label(false) ?>
 
-    <?= $form->field($model, 'Consulta_idConsulta')->textInput() ?>
+    <?= $form->field($model, 'Consulta_idConsulta')->hiddenInput() ?>
 
     <?= $form->field($model, 'Estado')->textInput() ?>
 

@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 /**
  * PessoaController implements the CRUD actions for Pessoa model.
@@ -20,6 +22,7 @@ class PessoaController extends Controller
     public function behaviors()
     {
         return [
+
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

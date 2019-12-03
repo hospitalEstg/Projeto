@@ -13,9 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Receita', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 
 
     <?= GridView::widget([
@@ -23,10 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idReceita',
+
             'DataReceita',
             'Prescricao',
-            'Consulta_idConsulta',
+            // Por data da consulta ou aceder a consulta q ocorreu
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

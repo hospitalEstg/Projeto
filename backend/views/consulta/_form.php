@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idFuncionario')->textInput() ?>
 
-    <?= $form->field($model, 'idUtente')->textInput() ?>
+   <?= $form->field($model, 'idUtente')->hiddenInput(['Pessoa_idPessoa'])->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

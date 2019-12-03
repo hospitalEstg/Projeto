@@ -13,9 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Medicamento', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 
 
     <?= GridView::widget([
@@ -23,8 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idMedicamento',
+
             'Nome',
+          //  'Quantidade', esta no receita_medicamento
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

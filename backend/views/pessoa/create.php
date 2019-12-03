@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Pessoa */
+/* @var $model common\models\Pessoa */
 
 $this->title = 'Create Pessoa';
 $this->params['breadcrumbs'][] = ['label' => 'Pessoas', 'url' => ['index']];

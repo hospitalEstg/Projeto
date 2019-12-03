@@ -35,13 +35,18 @@ class MarcacaoController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
+        /*$dataProvider = new ActiveDataProvider([
             'query' => MarcacaoConsulta::find(),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-        ]);
+        ]); */
+           $marcacao = MarcacaoConsulta::find()->all();
+
+                return $this->render('index', [
+                    'marcacao' => $marcacao,
+                ]);
     }
 
     /**

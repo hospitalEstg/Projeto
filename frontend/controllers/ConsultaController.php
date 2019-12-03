@@ -42,6 +42,8 @@ class ConsultaController extends Controller
         ]);
 
 
+
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
