@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <h1> Consultas Pendentes </h1>
           <?php  foreach($marcacao as $value){
-            if($value->Estado ==1) {
+            if($value->Estado ==0) {
           ?>
                            <table class="table table-striped table-bordered">
                            <tr>

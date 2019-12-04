@@ -22,26 +22,42 @@ $this->params['breadcrumbs'][] = $this->title;
           ?>
                            <table class="table table-striped table-bordered">
                            <tr>
+                           <th> Nome Utente </th>
                            <th> Descricao </th>
-                           <th> Urgente </th>
-                            <th> Nome Utente </th>
+                           <th> Estado da Consulta </th>
+                            <th> Tipo de Consulta </th>
+                            <th> Urgente </th>
                             <th> Editar </th>
 
 
                            </tr>
                            <tr>
+                            <td>
+                          <?= $utente->Nome; ?>
+                                   </td>
                            <td>
                            <?= $consulta->Descricao; ?>
                            </td>
+
                             <td>
-                             <?= $consulta->Estado; ?>
+                            <?php if($consulta->Estado==0) {
+                            echo "Consulta Não Realizada"; }
+                             else echo "Consulta Realizada";?>
+
                             </td>
-                           
+                             <td>
+                              <?= $consulta->TipoConsulta; ?>
+                              </td>
+
+                               <td>
+                                <?= $marcacao->Urgente; ?>
+                                  </td>
+
+
 
 
                              <td>
-                                    <?= Html::a('Editar', ['update','idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                    <?= Html::a('Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                                    <?= Html::a('Editar', ['update','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
 
                                                        </td>
 

@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\MarcacaoConsulta;
+use common\models\Pessoa;
 
 /**
  * ConsultaController implements the CRUD actions for Consulta model.
@@ -39,9 +41,15 @@ class ConsultaController extends Controller
             'query' => Consulta::find(),
         ]); */
     $consultas = Consulta::find()->all();
+    $marcacao = MarcacaoConsulta::find()->one();
+    $utente = Pessoa::find()->one();
+
 
                 return $this->render('index', [
                     'consultas' => $consultas,
+                    'marcacao' => $marcacao,
+                    'utente' => $utente,
+
                 ]);
     }
 
