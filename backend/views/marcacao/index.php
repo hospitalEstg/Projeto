@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                              <td>
                                     <?= Html::a('Editar', ['update','idMarcacao_Consulta' => $value->idMarcacao_Consulta, 'Pessoa_idPessoa' =>$value->Pessoa_idPessoa ], ['class' => 'btn btn-success']) ?>
+                                    <?= Html::a('Ver', ['view','idMarcacao_Consulta' => $value->idMarcacao_Consulta, 'Pessoa_idPessoa' =>$value->Pessoa_idPessoa ], ['class' => 'btn btn-success']) ?>
                                     <?= Html::a('Consulta', ['consulta/create', 'idMarcacao_Consulta' => $value->idMarcacao_Consulta], ['class' => 'btn btn-success']) ?>
 
                                                        </td>

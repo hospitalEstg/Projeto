@@ -16,38 +16,63 @@ class m191029_101340_init_rbac_author extends Migration
     // 1- criar permissoes
 
      // add "createPost" permission
-            $createPost = $auth->createPermission('createPost');
-            $createPost->description = 'Create a post';
-            $auth->add($createPost);
+        $createPost = $auth->createPermission('createPost');
+        $createPost->description = 'Create a post';
+        $auth->add($createPost);
+
+        $updateOwnPost = $auth->createPermission('updateOwnPost');
+        $updateOwnPost->description = 'Update own post';
+        $auth->add($updateOwnPost);
 
      // add "updatePost"
-                 $updatePost = $auth->createPermission('updatePost');
-                 $updatePost->description = 'Update a post';
-                 $auth->add($updatePost);
+        $updatePost = $auth->createPermission('updatePost');
+        $updatePost->description = 'Update a post';
+        $auth->add($updatePost);
 
+    //add ""deletePosts"
+        $deletePost = $auth->createPermission('deletePost');
+        $deletePost->description = 'Delete a post';
+        $auth->add($deletePost);
+
+        //viewPost
+        $viewPost = $auth->createPermission('viewPost');
+        $viewPost->description = 'View a post';
+        $auth->add($viewPost);
 
 
     // 2- criar roles (ou perfis)
 
 
     // add "author" role and give this role the "createPost" permission
-        $author = $auth->createRole('author');
-        $auth->add($author);
-        $auth->addChild($author, $createPost);
+        $guest = $auth->createRole('guest');
+        $auth->add($guest);
+
+
+        $utente = $auth->createRole('utente');
+        $auth->add($utente);
+        $auth->addChild($utente, $viewPost);
+        $auth->addChild($utente, $updateOwnPost);
+        $auth->addChild($utente, $createPost);
 
  // add "admin" role and give this role the "createPost" permission
-        $admin = $auth->createRole('admin');
-        $auth->add($admin);
-        $auth->addChild($admin, $author);
+        $secretaria = $auth->createRole('secretaria');
+        $auth->add($secretaria);
+        $auth->addChild($secretaria, $utente);
+        $auth->addChild($secretaria, $updatePost);
+
+        $medico = $auth->createRole('medico');
+        $auth->add($medico);
+        $auth->addChild($medico, $secretaria);
 
 
-                     $auth->addChild($admin, $updatePost);
 
     // 3- associar utilizadores a roles
     // Assign roles to users.2 are IDs returned by IdentityInterface::getId()
 
-            $auth->assign($author, 2);
-            $auth->assign($admin, 1);
+            $auth->assign($guest, 4);
+            $auth->assign($utente, 1);
+            $auth->assign($secretaria, 2);
+            $auth->assign($medico, 3);
 
     }
 
