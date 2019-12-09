@@ -26,8 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
+                <?= $form->field($model, 'Nome')->textInput(['maxlength' => true]) ?>
 
-                <div class="form-group">
+                <?= $form->field($model, 'DataNascimento')->textInput() ?>
+
+                <?= $form->field($model, 'Morada')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'NumUtenteSaude')->textInput() ?>
+
+                <?= $form->field($model, 'NumIDCivil')->textInput() ?>
+
+                <?= $form->field($model, 'TipoUtilizador')->dropDownList([ 'Medico' => 'Medico', 'Utente' => 'Utente', 'Funcionario' => 'Funcionario', ], ['prompt' => '']) ?>
+
+                <?= $form->field($model, 'idUser')->hiddenInput(['value'=>Yii::$app->user->id])->label(false) ?>
+
+
+
+            <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
 

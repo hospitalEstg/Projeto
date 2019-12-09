@@ -13,6 +13,13 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $Nome;
+    public $DataNascimento;
+    public $Morada;
+    public $NumUtenteSaude;
+    public $NumIDCivil;
+    public $TipoUtilizador;
+    public $idUser;
 
 
     /**
@@ -34,6 +41,14 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            [['Nome', 'DataNascimento', 'Morada', 'NumUtenteSaude', 'NumIDCivil', 'TipoUtilizador', 'idUser'], 'required'],
+            [['DataNascimento'], 'safe'],
+            [['NumUtenteSaude', 'NumIDCivil', 'idUser'], 'integer'],
+            [['TipoUtilizador'], 'string'],
+            [['Nome'], 'string', 'max' => 100],
+            [['Morada'], 'string', 'max' => 45],
+            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idUser' => 'id']],
         ];
     }
 
