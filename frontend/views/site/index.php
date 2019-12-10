@@ -25,16 +25,27 @@ HTML;
         echo <<<HTML
         
                 <div class="body-content">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <p><a class="botao" href="consulta/index">Consultas</a></p>
+                    <div class="row consulta-layout">
+                        <a href="consulta/index">
+                        <div class="col-lg-4 consulta-layout-1">
+                            <img src="/img/icone_consulta.png" alt="as" height="100px">
+                            <h1><b>Consultas</b></h1>
                         </div>
-                        <div class="col-lg-4">
-                            <p><a class="botao" href="ftecnica/index">Fichas Técnicas</a></p>
+                        </a>
+                        
+                        <a href="ftecnica/index">
+                        <div class="col-lg-4 consulta-layout-2">
+                            <img src="/img/icone_ficha.png" alt="as" height="100px">
+                            <h1><b>Fichas Técnicas</b></h1>
                         </div>
-                        <div class="col-lg-4">
-                            <p><a class="botao" href="receita/index">Receitas Médicas </a></p>
+                        </a>
+                        
+                        <a href="receita/index">
+                        <div class="col-lg-4 consulta-layout-3">
+                            <img src="/img/icone_medico.png" alt="as" height="100px">
+                            <h1><b>Receitas Médicas</b></h1>
                         </div>
+                        </a>
                     </div>           
                 </div>
 HTML;
