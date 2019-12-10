@@ -2,19 +2,29 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Hospital ESTG';
 ?>
 <div class="site-index">
 
     <?php
     if (Yii::$app->user->isGuest) {
+        echo <<<HTML
+        <div class="jumbotron">
+                    <h1>Bem Vindo,</h1>
+                </div>
+            
+                <div class="body-content">
+            
+
+                    
+                </div>
+HTML;
+
+        
     } else {
         echo <<<HTML
-
              <div class="jumbotron">
                     <h1>(Teste) está logado</h1>
-            
-            
                 </div>
             
                 <div class="body-content">
@@ -42,6 +52,4 @@ HTML;
 
     }
     ?>
-
-
 </div>

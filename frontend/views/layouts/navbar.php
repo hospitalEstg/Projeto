@@ -5,7 +5,7 @@ use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 
 NavBar::begin([
-    'brandLabel' => Yii::$app->name,
+    'brandLabel' => Html::img('@web/img/logo.png'),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-inverse navbar-fixed-top navbar-customization',

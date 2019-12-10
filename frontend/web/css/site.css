@@ -147,3 +147,14 @@ a.desc:after {
     background-color: black !important;
 }
 
+.navbar-brand {
+
+    padding: 3px !important;
+
+}
+
+.navbar-brand img {
+
+    height: 110% !important;
+
+}
