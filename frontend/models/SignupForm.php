@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use common\models\Pessoa;
 use Yii;
 use yii\base\Model;
 use common\models\User;
@@ -42,13 +43,12 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
-            [['Nome', 'DataNascimento', 'Morada', 'NumUtenteSaude', 'NumIDCivil', 'TipoUtilizador', 'idUser'], 'required'],
+            [['DataNascimento', 'Morada', 'NumUtenteSaude', 'NumIDCivil', 'TipoUtilizador'], 'required'],
             [['DataNascimento'], 'safe'],
             [['NumUtenteSaude', 'NumIDCivil', 'idUser'], 'integer'],
             [['TipoUtilizador'], 'string'],
             [['Nome'], 'string', 'max' => 100],
             [['Morada'], 'string', 'max' => 45],
-            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idUser' => 'id']],
         ];
     }
 
@@ -61,24 +61,38 @@ class SignupForm extends Model
     {
 
         if ($this->validate()) {
+
             $user = new User();
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
 
+            if ($user->save()) {
 
-            if ($user->save() && $this->sendEmail($user)) {
-                $auth = \Yii::$app->authManager;
-                $utenteRole = $auth->getRole('utente');
-                $auth->assign($utenteRole, $user->getId());
+                $pessoa = new Pessoa();
+                $pessoa->Nome = $user->username;
+                $pessoa->DataNascimento = $this->DataNascimento;
+                $pessoa->Morada = $this->Morada;
+                $pessoa->NumUtenteSaude = $this->NumUtenteSaude;
+                $pessoa->NumIDCivil = $this->NumIDCivil;
+                $pessoa->TipoUtilizador = $this->TipoUtilizador;
+                $pessoa->idUser = $user->id;
 
-                return true;
+                if ( $pessoa->save()  && $this->sendEmail($user) ) {
+
+                    $auth = \Yii::$app->authManager;
+                    $utenteRole = $auth->getRole('utente');
+                    $auth->assign($utenteRole, $user->getId());
+
+                    return true;
+                }
+
             }
 
-            return false;
-
         }
+
+        return false;
 
     }
 

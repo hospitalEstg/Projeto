@@ -18,11 +18,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Morada')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'NumUtenteSaude')->textInput() ?>
+    <?= $form->field($model, 'NumUtenteSaude')->textInput() ->label('Número de Utente') ?>
 
-    <?= $form->field($model, 'NumIDCivil')->textInput() ?>
+    <?= $form->field($model, 'NumIDCivil')->textInput() ->label('Número de Identificação Civil') ?>
 
-    <?= $form->field($model, 'TipoUtilizador')->dropDownList([ 'Medico' => 'Medico', 'Utente' => 'Utente', 'Funcionario' => 'Funcionario', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'TipoUtilizador')->textInput(['disabled' => true]) ?>
 
     <?= $form->field($model, 'idUser')->hiddenInput(['value'=>Yii::$app->user->id])->label(false) ?>
 

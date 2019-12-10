@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 
 
 $this->title = 'Signup';
@@ -20,26 +21,31 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Nome') ?>
 
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <?= $form->field($model, 'Nome')->textInput(['maxlength' => true]) ?>
-
-                <?= $form->field($model, 'DataNascimento')->textInput() ?>
+                <?= $form->field($model, 'DataNascimento')->widget(
+                    DatePicker::className(), [
+                    // inline too, not bad
+                    'inline' => true,
+                    // modify template for custom rendering
+                    'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]);?>
 
                 <?= $form->field($model, 'Morada')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'NumUtenteSaude')->textInput() ?>
+                <?= $form->field($model, 'NumUtenteSaude')->textInput() ->label('Número de Utente') ?>
 
-                <?= $form->field($model, 'NumIDCivil')->textInput() ?>
+                <?= $form->field($model, 'NumIDCivil')->textInput() ->label('Número de Identificação Civil') ?>
 
-                <?= $form->field($model, 'TipoUtilizador')->dropDownList([ 'Medico' => 'Medico', 'Utente' => 'Utente', 'Funcionario' => 'Funcionario', ], ['prompt' => '']) ?>
-
-                <?= $form->field($model, 'idUser')->hiddenInput(['value'=>Yii::$app->user->id])->label(false) ?>
-
+                <?= $form->field($model, 'TipoUtilizador')->dropDownList(['Utente' => 'Utente', 'Medico' => 'Medico', 'Funcionario' => 'Funcionario', ]) ?>
 
 
             <div class="form-group">

@@ -139,7 +139,11 @@ a.desc:after {
     margin: 100px 50px 50px !important;
     line-height: 1.42857143;
     border-radius: 4px !important;
-
     user-select: none !important;
 
 }
+
+.navbar-customization {
+    background-color: black !important;
+}
+
