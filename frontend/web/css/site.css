@@ -125,21 +125,45 @@ a.desc:after {
 .botao {
 
 
-    background-color: #0b93d5 !important;
-    display: inline-block !important;
 
-    font-weight: normal !important;
+}
+
+.navbar-customization {
+
+}
+
+.navbar-brand {
+
+    padding: 3px !important;
+
+}
+
+.navbar-brand img {
+    height: 110% !important;
+}
+
+/*Layout botao pag. index---------------------------------------------------------------------------------------------*/
+.consulta-layout{
+    margin-top: 100px;
+}
+.consulta-layout-1{
+    border: 4px solid #222222 !important;
     text-align: center !important;
-
-
-
-    border: 3px solid black !important;
-    padding: 130px 130px  !important;
-    font-size: 50px !important;
-    margin: 100px 50px 50px !important;
-    line-height: 1.42857143;
+    color: #222222;
+    padding: 10px 10px 10px 10px !important;
     border-radius: 4px !important;
-
-    user-select: none !important;
-
+}
+.consulta-layout-2{
+    border: 4px solid #222222 !important;
+    text-align: center !important;
+    color: #222222;
+    padding: 10px 10px 10px 10px !important;
+    border-radius: 4px !important;
+}
+.consulta-layout-3{
+    border: 4px solid #222222 !important;
+    text-align: center !important;
+    color: #222222;
+    padding: 10px 10px 10px 10px !important;
+    border-radius: 4px !important;
 }

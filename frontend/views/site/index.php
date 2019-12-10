@@ -2,35 +2,54 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Hospital ESTG';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <?php
+    if (Yii::$app->user->isGuest) {
+        echo <<<HTML
+        <div class="jumbotron">
+                    <h1>Bem Vindo,</h1>
+                </div>
+            
+                <div class="body-content">
+            
 
+                    
+                </div>
+HTML;
 
-    </div>
+        
+    } else {
+        echo <<<HTML
+        
+                <div class="body-content">
+                    <div class="row consulta-layout">
+                        <a href="consulta/index">
+                        <div class="col-lg-4 consulta-layout-1">
+                            <img src="/img/icone_consulta.png" alt="as" height="100px">
+                            <h1><b>Consultas</b></h1>
+                        </div>
+                        </a>
+                        
+                        <a href="ftecnica/index">
+                        <div class="col-lg-4 consulta-layout-2">
+                            <img src="/img/icone_ficha.png" alt="as" height="100px">
+                            <h1><b>Fichas Técnicas</b></h1>
+                        </div>
+                        </a>
+                        
+                        <a href="receita/index">
+                        <div class="col-lg-4 consulta-layout-3">
+                            <img src="/img/icone_medico.png" alt="as" height="100px">
+                            <h1><b>Receitas Médicas</b></h1>
+                        </div>
+                        </a>
+                    </div>           
+                </div>
+HTML;
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-
-
-                <p><a class="botao" href="http://frontend.local/consulta/index">Yii</a></p>
-            </div>
-            <div class="col-lg-4">
-
-
-                <p><a class="botao" href="http://www.yiiframework.com/forum/">Yii</a></p>
-            </div>
-            <div class="col-lg-4">
-
-
-                <p><a class="botao" href="http://www.yiiframework.com/extensions/">Yii </a></p>
-            </div>
-        </div>
-
-    </div>
+    }
+    ?>
 </div>
