@@ -55,6 +55,7 @@ class SignupForm extends Model
 
             if ($user->save() && $this->sendEmail($user)) {
                 $auth = \Yii::$app->authManager;
+                // passar tipoutilizador ao get role
                 $utenteRole = $auth->getRole('utente');
                 $auth->assign($utenteRole, $user->getId());
 
