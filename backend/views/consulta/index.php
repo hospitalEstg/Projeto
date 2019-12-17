@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= Html::a('Editar', ['update','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
                                     <?= Html::a('Ver', ['view','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
                                     <?php   if($consulta->Estado==0)  ?>
-                                       <?= Html::a(' Realizar Consulta', ['update','id' => $consulta->idConsulta], ['class' => 'btn btn-success'])
+                                       <?= Html::a(' Realizar Consulta', ['consulta','id' => $consulta->idConsulta], ['class' => 'btn btn-success'])
                                                                       ?>
 
                                                        </td>

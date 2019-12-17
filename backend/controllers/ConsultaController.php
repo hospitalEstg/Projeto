@@ -61,9 +61,30 @@ class ConsultaController extends Controller
      */
     public function actionView($id)
     {
+        $pessoas = Pessoa::find()->all();
+        $consultas = Consulta::find()->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'consultas' => $consultas,
+            'pessoas' => $pessoas,
         ]);
+
+
+
+    }
+
+    public function actionConsulta($id) {
+       $pessoas = Pessoa::find()->all();
+            $consultas = Consulta::find()->all();
+
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+                'consultas' => $consultas,
+                'pessoas' => $pessoas,
+            ]);
+
+
     }
 
     /**
@@ -71,19 +92,24 @@ class ConsultaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($idMarcacao_Consulta)
     {
         $model = new Consulta();
+        if ($model->load(Yii::$app->request->post())) {
+           if ($model->save()) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idConsulta]);
+               $pedido= MarcacaoConsulta::findOne($idMarcacao_Consulta);
+               $pedido->Consulta_idConsulta = $model->idConsulta;
+
+               $pedido->save();
+
+                return $this->redirect(['view', 'id' => $model->idConsulta]);
+            }
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);
-    }
-
+}
     /**
      * Updates an existing Consulta model.
      * If update is successful, the browser will be redirected to the 'view' page.
