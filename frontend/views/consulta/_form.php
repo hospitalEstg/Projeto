@@ -41,8 +41,7 @@ use common\models\Pessoa;
             'minView' => 0,
             'maxView' => 1,
             'autoclose' => true,
-            'linkFormat' => 'HH:ii P', // if inline = true
-            // 'format' => 'HH:ii P', // if inline = false
+            'linkFormat' => 'HH:ii:00',
             'todayBtn' => true
         ]
     ]);?>
@@ -50,11 +49,15 @@ use common\models\Pessoa;
 
     <div class="col-lg-12">
 
-        <?= $form->field($model, 'TipoConsulta')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'Descricao')->dropDownList(
+            ['Geral' => 'Consulta Geral', 'Oftalmologista' => 'Oftalmologista', 'c' => 'Item C']
+        ); ?>
 
-        <?= $form->field($model, 'Descricao')->textInput(['maxlength' => true], ['style'=>'width:1000px']) ?>
+        <?= $form->field($model, 'Descricao')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'Estado')->textInput() ?>
+        <?= $form->field($model, 'Estado')->dropDownList(
+            ['0' => 'Por marcar']
+        ); ?>
 
         <?php $medico = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Medico'])->all(),'idPessoa','Nome');
         echo $form->field($model, 'idMedico')->dropDownList($medico) ->label('Nome do Médico') ?>

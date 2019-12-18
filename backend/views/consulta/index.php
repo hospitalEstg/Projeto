@@ -1,11 +1,8 @@
 <?php
-
 use yii\helpers\Html;
 use yii\grid\GridView;
-
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Consultas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -22,46 +19,26 @@ $this->params['breadcrumbs'][] = $this->title;
           ?>
                            <table class="table table-striped table-bordered">
                            <tr>
-                           <th> Nome Utente </th>
                            <th> Descricao </th>
-                           <th> Estado da Consulta </th>
-                            <th> Tipo de Consulta </th>
-                            <th> Urgente </th>
+                           <th> Urgente </th>
+                            <th> Nome Utente </th>
                             <th> Editar </th>
 
 
                            </tr>
                            <tr>
-                            <td>
-                          <?= $consulta->marcacao->Descricao; ?>
-                                   </td>
                            <td>
                            <?= $consulta->Descricao; ?>
                            </td>
-
                             <td>
-                            <?php if($consulta->Estado==0) {
-                            echo "Consulta Não Realizada"; }
-                             else echo "Consulta Realizada";?>
-
+                             <?= $consulta->Estado; ?>
                             </td>
-                             <td>
-                              <?= $consulta->TipoConsulta; ?>
-                              </td>
-
-                               <td>
-                                <?= $consulta->marcacao->Urgente; ?>
-                                  </td>
-
 
 
 
                              <td>
-                                    <?= Html::a('Editar', ['update','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                    <?= Html::a('Ver', ['view','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                    <?php   if($consulta->Estado==0)  ?>
-                                       <?= Html::a(' Realizar Consulta', ['consulta','id' => $consulta->idConsulta], ['class' => 'btn btn-success'])
-                                                                      ?>
+                                    <?= Html::a('Editar', ['update','idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                                    <?= Html::a('Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
 
                                                        </td>
 
@@ -74,7 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'idConsulta',
             'DataConsulta',
             'TipoConsulta',
@@ -83,7 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'idMedico',
             //'idFuncionario',
             //'hora',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); */?>
