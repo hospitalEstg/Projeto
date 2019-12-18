@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            </tr>
                            <tr>
                             <td>
-                          <?/*= $consulta->marcacao->Descricao;*/ ?>
+                          <?= $consulta->marcacao->Descricao; ?>
                                    </td>
                            <td>
                            <?= $consulta->Descricao; ?>
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               </td>
 
                                <td>
-                                <?/*= $consulta->marcacao->Urgente;*/ ?>
+                                <?= $consulta->marcacao->Urgente; ?>
                                   </td>
 
 

@@ -1,7 +1,8 @@
 <?php
 
-namespace app\api\controllers;
+namespace backend\modules\controllers;
 use yii\rest\ActiveController;
+
 
 class MedController extends ActiveController
 {

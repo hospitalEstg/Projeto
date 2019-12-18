@@ -59,10 +59,10 @@ class ConsultaController extends Controller
      */
     public function actionView($id)
     {
-   // $model = Consulta::find()->all();
+    //$model = Consulta::find()->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
-           // 'consultas' => $consultas,
+         //   'consultas' => $consultas,
         ]);
     }
 

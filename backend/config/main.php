@@ -14,7 +14,7 @@ return [
     'modules' => [
 
             'api' => [
-                'class' => 'app\api\Module',
+                'class' => 'backend\modules\Module',
             ],
 
     ],
@@ -58,40 +58,18 @@ return [
             'rules' => [
                     [
                         'class' => 'yii\rest\UrlRule',
-                        'controller' => ['api/Marc'],
+                        'controller' => [
+                            'api/default',
+                            'api/cons',
+                            'api/marc',
+                            'api/pess',
+                            'api/med',
+                            'api/rec',
+                            'api/recmed',
+                        ],
                         'pluralize' => false,
                     ],
-                      [
-                          'class' => 'yii\rest\UrlRule',
-                           'controller' => ['api/Cons'],
-                           'pluralize' => false,
-                                 ],
 
-                      [
-                          'class' => 'yii\rest\UrlRule',
-                           'controller' => ['api/Pess'],
-                             'pluralize' => false,
-                               ],
-                       [
-                       'class' => 'yii\rest\UrlRule',
-                        'controller' => ['api/Ftec'],
-                        'pluralize' => false,
-                                                    ],
-[
-                       'class' => 'yii\rest\UrlRule',
-                        'controller' => ['api/Rec'],
-                        'pluralize' => false,
-                                                    ],
-[
-                       'class' => 'yii\rest\UrlRule',
-                        'controller' => ['api/Med'],
-                        'pluralize' => false,
-                                                    ],
-[
-                       'class' => 'yii\rest\UrlRule',
-                        'controller' => ['api/Recmed'],
-                        'pluralize' => false,
-                                                    ],
 
 
             ],
