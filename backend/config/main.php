@@ -11,14 +11,24 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+
+            'api' => [
+                'class' => 'app\api\Module',
+            ],
+
+    ],
     'components' => [
         'authManager' => [
                'class' => 'yii\rbac\PhpManager',
 
            ],
         'request' => [
-            'csrfParam' => '_csrf-backend',
+             'csrfParam' => '_csrf-backend',
+            'parsers' => [
+            'application/json' => 'yii\web\JsonParser',
+        ]
+
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -46,6 +56,44 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                    [
+                        'class' => 'yii\rest\UrlRule',
+                        'controller' => ['api/Marc'],
+                        'pluralize' => false,
+                    ],
+                      [
+                          'class' => 'yii\rest\UrlRule',
+                           'controller' => ['api/Cons'],
+                           'pluralize' => false,
+                                 ],
+
+                      [
+                          'class' => 'yii\rest\UrlRule',
+                           'controller' => ['api/Pess'],
+                             'pluralize' => false,
+                               ],
+                       [
+                       'class' => 'yii\rest\UrlRule',
+                        'controller' => ['api/Ftec'],
+                        'pluralize' => false,
+                                                    ],
+[
+                       'class' => 'yii\rest\UrlRule',
+                        'controller' => ['api/Rec'],
+                        'pluralize' => false,
+                                                    ],
+[
+                       'class' => 'yii\rest\UrlRule',
+                        'controller' => ['api/Med'],
+                        'pluralize' => false,
+                                                    ],
+[
+                       'class' => 'yii\rest\UrlRule',
+                        'controller' => ['api/Recmed'],
+                        'pluralize' => false,
+                                                    ],
+
+
             ],
         ],
 

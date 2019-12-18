@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $idMarcacao_Consulta
  * @property int $Pessoa_idPessoa
- * @property int $Consulta_idConsulta
+ * @property int|null $Consulta_idConsulta
  * @property int $Estado
  * @property string $Descricao
  * @property int $Urgente
@@ -33,9 +33,10 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'Descricao', 'Urgente'], 'required'],
+            [['Pessoa_idPessoa', 'Descricao', 'Urgente'], 'required'],
             [['Pessoa_idPessoa', 'Consulta_idConsulta', 'Estado', 'Urgente'], 'integer'],
             [['Descricao'], 'string', 'max' => 150],
+            [['Consulta_idConsulta'], 'unique'],
             [['Consulta_idConsulta'], 'exist', 'skipOnError' => true, 'targetClass' => Consulta::className(), 'targetAttribute' => ['Consulta_idConsulta' => 'idConsulta']],
             [['Pessoa_idPessoa'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['Pessoa_idPessoa' => 'idPessoa']],
         ];
@@ -59,17 +60,9 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getConsultaIdConsulta()
+    public function getConsulta()
     {
         return $this->hasOne(Consulta::className(), ['idConsulta' => 'Consulta_idConsulta']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPessoaIdPessoa()
-    {
-        return $this->hasOne(Pessoa::className(), ['idPessoa' => 'Pessoa_idPessoa']);
     }
 
     /**

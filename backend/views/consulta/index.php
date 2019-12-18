@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Consulta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-  <?php  foreach($consultas as $consulta){
+  <?php  foreach($model as $consulta){
             if($consulta->Estado ==0) {
           ?>
                            <table class="table table-striped table-bordered">
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            </tr>
                            <tr>
                             <td>
-                          <?= $utente->Nome; ?>
+                          <?/*= $consulta->marcacao->Descricao;*/ ?>
                                    </td>
                            <td>
                            <?= $consulta->Descricao; ?>
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               </td>
 
                                <td>
-                                <?= $marcacao->Urgente; ?>
+                                <?/*= $consulta->marcacao->Urgente;*/ ?>
                                   </td>
 
 

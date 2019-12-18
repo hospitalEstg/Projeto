@@ -12,10 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 
+
 <div>
-<?php foreach($consultas as $value){
-echo $value->Descricao;
-} ?>
+<?php
+<?php  ?>
+</div>
+<div>
+
 
 </div>
 

@@ -40,15 +40,13 @@ class ConsultaController extends Controller
         /*$dataProvider = new ActiveDataProvider([
             'query' => Consulta::find(),
         ]); */
-    $consultas = Consulta::find()->all();
-    $marcacao = MarcacaoConsulta::find()->one();
-    $utente = Pessoa::find()->one();
+    $model = Consulta::find()->all();
+
 
 
                 return $this->render('index', [
-                    'consultas' => $consultas,
-                    'marcacao' => $marcacao,
-                    'utente' => $utente,
+                    'model' => $model,
+
 
                 ]);
     }
@@ -61,27 +59,21 @@ class ConsultaController extends Controller
      */
     public function actionView($id)
     {
-        $pessoas = Pessoa::find()->all();
-        $consultas = Consulta::find()->all();
-
+   // $model = Consulta::find()->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'consultas' => $consultas,
-            'pessoas' => $pessoas,
+           // 'consultas' => $consultas,
         ]);
-
-
-
     }
 
     public function actionConsulta($id) {
-       $pessoas = Pessoa::find()->all();
+
             $consultas = Consulta::find()->all();
 
-            return $this->render('view', [
+            return $this->render('consultaview', [
                 'model' => $this->findModel($id),
                 'consultas' => $consultas,
-                'pessoas' => $pessoas,
+
             ]);
 
 

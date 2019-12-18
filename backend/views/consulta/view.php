@@ -40,4 +40,23 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <?= DetailView::widget([
+        'model' => $model->marcacao,
+        'attributes' => [
+            'Descricao',
+            'Estado',
+            'Pessoa_idPessoa',
+            'Urgente',
+        ],
+    ]) ?>
+
+    <?= DetailView::widget([
+        'model' => $model->marcacao->pessoa,
+        'attributes' => [
+            'Nome',
+            'Morada',
+            'TipoUtilizador',
+        ],
+    ]) ?>
+
 </div>

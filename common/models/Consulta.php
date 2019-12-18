@@ -9,17 +9,17 @@ use Yii;
  *
  * @property int $idConsulta
  * @property string $DataConsulta
+ * @property string $hora
  * @property string $TipoConsulta
- * @property string $Descricao
+ * @property string|null $Descricao
  * @property int $Estado
  * @property int $idMedico
  * @property int $idFuncionario
- * @property string $hora
  *
- * @property Pessoa $funcionario
- * @property Pessoa $medico
+ * @property Pessoa $idFuncionario0
+ * @property Pessoa $idMedico0
  * @property Fichatecnica[] $fichatecnicas
- * @property MarcacaoConsulta[] $marcacaoConsultas
+ * @property MarcacaoConsulta $marcacaoConsulta
  * @property Receita[] $receitas
  */
 class Consulta extends \yii\db\ActiveRecord
@@ -38,7 +38,7 @@ class Consulta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['DataConsulta', 'TipoConsulta', 'idMedico', 'idFuncionario', 'hora'], 'required'],
+            [['DataConsulta', 'hora', 'TipoConsulta', 'idMedico', 'idFuncionario'], 'required'],
             [['DataConsulta', 'hora'], 'safe'],
             [['Estado', 'idMedico', 'idFuncionario'], 'integer'],
             [['TipoConsulta', 'Descricao'], 'string', 'max' => 45],
@@ -55,19 +55,19 @@ class Consulta extends \yii\db\ActiveRecord
         return [
             'idConsulta' => 'Id Consulta',
             'DataConsulta' => 'Data Consulta',
+            'hora' => 'Hora',
             'TipoConsulta' => 'Tipo Consulta',
             'Descricao' => 'Descricao',
             'Estado' => 'Estado',
             'idMedico' => 'Id Medico',
             'idFuncionario' => 'Id Funcionario',
-            'hora' => 'Hora',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFuncionario()
+    public function getIdFuncionario0()
     {
         return $this->hasOne(Pessoa::className(), ['idPessoa' => 'idFuncionario']);
     }
@@ -75,7 +75,7 @@ class Consulta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMedico()
+    public function getIdMedico0()
     {
         return $this->hasOne(Pessoa::className(), ['idPessoa' => 'idMedico']);
     }
@@ -91,11 +91,10 @@ class Consulta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMarcacaoConsultas()
+    public function getMarcacao()
     {
-        return $this->hasMany(MarcacaoConsulta::className(), ['Consulta_idConsulta' => 'idConsulta']);
+        return $this->hasOne(MarcacaoConsulta::className(), ['Consulta_idConsulta' => 'idConsulta']);
     }
-
 
     /**
      * @return \yii\db\ActiveQuery
@@ -104,13 +103,4 @@ class Consulta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Receita::className(), ['Consulta_idConsulta' => 'idConsulta']);
     }
-
-     /**
-         * @return \yii\db\ActiveQuery
-         */
-        public function getMarcacao()
-        {
-            return $this->hasMany(MarcacaoConsulta::className(), ['Consulta_idConsulta' => 'idConsulta']);
-        }
-
 }
