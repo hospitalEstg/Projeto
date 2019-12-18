@@ -1,5 +1,7 @@
 <?php
 
+use dosamigos\datepicker\DatePicker;
+use dosamigos\datetimepicker\DateTimePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -14,28 +16,57 @@ use common\models\Pessoa;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'DataConsulta')->textInput() ?>
-
-    <?= $form->field($model, 'TipoConsulta')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Descricao')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Estado')->textInput() ?>
-
-        <?= $form->field($model, 'hora')->textInput() ?>
-
-
-  <?php $funcionario = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Funcionario'])->all(),'idPessoa','Nome');
-   echo $form->field($model, 'idFuncionario')->dropDownList($funcionario) ?>
-
-
-<?php $medico = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Medico'])->all(),'idPessoa','Nome');
-   echo $form->field($model, 'idMedico')->dropDownList($medico) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="col-lg-4">
+    <?= $form->field($model, 'DataConsulta')->widget(
+        DatePicker::className(), [
+        'inline' => true,
+        'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+        ]
+    ]);?>
     </div>
 
+    <div class="col-lg-4">
+    <?= $form->field($model, 'hora')->widget(
+            DateTimePicker::className(), [
+        'language' => 'en',
+        'size' => 'ms',
+        'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'pickButtonIcon' => 'glyphicon glyphicon-time',
+        'inline' => true,
+        'clientOptions' => [
+            'startView' => 1,
+            'minView' => 0,
+            'maxView' => 1,
+            'autoclose' => true,
+            'linkFormat' => 'HH:ii P', // if inline = true
+            // 'format' => 'HH:ii P', // if inline = false
+            'todayBtn' => true
+        ]
+    ]);?>
+    </div>
+
+    <div class="col-lg-12">
+
+        <?= $form->field($model, 'TipoConsulta')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'Descricao')->textInput(['maxlength' => true], ['style'=>'width:1000px']) ?>
+
+        <?= $form->field($model, 'Estado')->textInput() ?>
+
+        <?php $medico = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Medico'])->all(),'idPessoa','Nome');
+        echo $form->field($model, 'idMedico')->dropDownList($medico) ->label('Nome do Médico') ?>
+
+        <?php $funcionario = ArrayHelper::map(Pessoa::find()->where(['TipoUtilizador' => 'Funcionario'])->all(),'idPessoa','Nome');
+       echo $form->field($model, 'idFuncionario')->dropDownList($funcionario) ->label('Nome do Funcionário') ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
+
+    </div>
     <?php ActiveForm::end(); ?>
 
 </div>
