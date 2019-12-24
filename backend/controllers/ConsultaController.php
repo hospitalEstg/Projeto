@@ -66,7 +66,7 @@ class ConsultaController extends Controller
         ]);
     }
 
-    public function actionConsulta($id) {
+   /*public function actionConsulta($id) {
 
             $consultas = Consulta::find()->all();
 
@@ -74,9 +74,39 @@ class ConsultaController extends Controller
                 'model' => $this->findModel($id),
                 'consultas' => $consultas,
 
+
             ]);
 
 
+    }*/
+     /**
+         * Creates a new Consulta model.
+         * If creation is successful, the browser will be redirected to the 'view' page.
+         * @return mixed
+         */
+      public function actionConsulta($id)
+
+        {
+            $model = Consulta::findOne($id);
+            $ftec = new \common\models\FichaTecnica();
+
+            if ($ftec->load(Yii::$app->request->post())) {
+
+
+
+
+                  $model = Consulta::findOne($id);
+                  $ftec->Consulta_idConsulta = $model->idConsulta;
+
+                    $ftec->save();
+                    return $this->redirect(['view', 'id' => $model->idConsulta]);
+
+            }
+            return $this->render('consultaview', [
+                'model' => $model,
+                'ftec' => $ftec,
+
+            ]);
     }
 
     /**

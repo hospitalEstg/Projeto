@@ -44,6 +44,9 @@ class Consulta extends \yii\db\ActiveRecord
             [['TipoConsulta', 'Descricao'], 'string', 'max' => 45],
             [['idFuncionario'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idFuncionario' => 'idPessoa']],
             [['idMedico'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idMedico' => 'idPessoa']],
+
+
+
         ];
     }
 
@@ -61,6 +64,7 @@ class Consulta extends \yii\db\ActiveRecord
             'Estado' => 'Estado',
             'idMedico' => 'Id Medico',
             'idFuncionario' => 'Id Funcionario',
+
         ];
     }
 

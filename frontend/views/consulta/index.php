@@ -1,34 +1,40 @@
 <?php
+
 use yii\helpers\Html;
 use yii\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
 $this->title = 'Consultas';
+
 ?>
 <div class="consulta-index">
 
 
-    <div class="col-lg-6" >
-        <h2><b>Próximas Consultas</b></h2>
-        <br>
-        <div style="width: 500px; height: 500px; overflow-y: scroll";>
-            <?php  foreach($model as $consulta){
-                if($consulta->Estado ==0) {
-                    ?>
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Medico: <?= $consulta->idMedico ?></th>
-                            <td>Data: <?= $consulta->DataConsulta ?></td>
-                        </tr>
-                        <tr>
-                            <td>Descrição: <?= $consulta->Descricao; ?></td>
-                            <td>Hora: <?= $consulta->hora; ?></td>
-                        </tr>
-                    </table>
-                <?php } }
-            ?>
-        </div>
-    </div>
+
+
+       <div class="col-lg-6" >
+              <h2><b>Próximas Consultas</b></h2>
+              <br>
+              <div style="width: 500px; height: 500px; overflow-y: scroll";>
+                  <?php  foreach($model as $consulta){
+                      if($consulta->Estado ==0) {
+                          ?>
+                          <table class="table table-bordered">
+                              <tr>
+                                  <th>Medico: <?= $consulta->idMedico ?></th>
+                                  <td>Data: <?= $consulta->DataConsulta ?></td>
+                              </tr>
+                              <tr>
+                                  <td>Descrição: <?= $consulta->Descricao; ?></td>
+                                  <td>Hora: <?= $consulta->hora; ?></td>
+                              </tr>
+                          </table>
+                      <?php } }
+                  ?>
+
+  </div>
     <div class="col-lg-6" >
         <h2><b>Consultas Pendentes de Marcação</b></h2>
         <br>
@@ -44,6 +50,6 @@ $this->title = 'Consultas';
         <?= Html::a('Adicionar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
     </div>
 
-
-
 </div>
+</div>
+

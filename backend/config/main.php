@@ -66,6 +66,7 @@ return [
                             'api/med',
                             'api/rec',
                             'api/recmed',
+                            'api/user',
                         ],
                         'pluralize' => false,
                     ],
