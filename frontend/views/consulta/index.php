@@ -7,19 +7,15 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Consultas';
-
 ?>
+
 <div class="consulta-index">
-
-
-
-
        <div class="col-lg-6" >
               <h2><b>Próximas Consultas</b></h2>
               <br>
               <div style="width: 500px; height: 500px; overflow-y: scroll";>
                   <?php  foreach($model as $consulta){
-                      if($consulta->Estado ==0) {
+                      if($consulta->Estado == 1) {
                           ?>
                           <table class="table table-bordered">
                               <tr>
@@ -33,8 +29,8 @@ $this->title = 'Consultas';
                           </table>
                       <?php } }
                   ?>
-
-  </div>
+              </div>
+       </div>
     <div class="col-lg-6" >
         <h2><b>Consultas Pendentes de Marcação</b></h2>
         <br>
@@ -42,14 +38,29 @@ $this->title = 'Consultas';
             <?php  foreach($model as $consulta){
                 if($consulta->Estado ==0) {
                     ?>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Medico: <?= $consulta->idMedico ?></th>
+                            <td>Data: <?= $consulta->DataConsulta ?></td>
+                        </tr>
+                        <tr>
+                            <td>Descrição: <?= $consulta->Descricao; ?></td>
+                            <td>Hora: <?= $consulta->hora; ?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><?= Html::a('Editar', ['update','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                                <?= Html::a('Eliminar', ['delete','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                            </td>
+                        </tr>
 
+                    </table>
                 <?php } }
             ?>
         </div>
         <br>
         <?= Html::a('Adicionar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-    </div>
 
-</div>
+    </div>
 </div>
 
