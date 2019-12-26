@@ -7,6 +7,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Consultas';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="consulta-index">
