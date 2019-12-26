@@ -1,11 +1,9 @@
 <?php
-use common\models\Consulta;
 use common\models\Pessoa;
 use dosamigos\datepicker\DatePicker;
 use dosamigos\datetimepicker\DateTimePicker;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Consulta */

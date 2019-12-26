@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Pessoa;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -41,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                     <table class="table table-bordered">
                         <tr>
-                            <th>Medico: <?= $consulta->idMedico ?></th>
+                            <td>Data: <?= $consulta->idMedico ?></td>
                             <td>Data: <?= $consulta->DataConsulta ?></td>
                         </tr>
                         <tr>
@@ -51,7 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <tr>
                             <td></td>
                             <td><?= Html::a('Editar', ['update','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                <?= Html::a('Eliminar', ['delete','id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                                <?= Html::a('Eliminar', ['delete', 'id' => $consulta->idConsulta], [
+                                    'class' => 'btn btn-danger',
+                                    'data-confirm' => 'Eliminar?',
+                                    'data-method' => 'post',
+                                ]) ?>
                             </td>
                         </tr>
 
