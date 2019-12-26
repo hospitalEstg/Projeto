@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
        <div class="col-lg-6" >
               <h2><b>Próximas Consultas</b></h2>
               <br>
-              <div style="width: 500px; height: 500px; overflow-y: scroll";>
+              <div style="width: 500px; height: 300px; overflow-y: auto";>
                   <?php  foreach($model as $consulta){
                       if($consulta->Estado == 1) {
                           ?>
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-lg-6" >
         <h2><b>Consultas Pendentes de Marcação</b></h2>
         <br>
-        <div style="width: 500px; height: 300px; overflow-y: scroll";>
+        <div style="width: 500px; height: 300px; overflow-y: auto";>
             <?php  foreach($model as $consulta){
                 if($consulta->Estado ==0) {
                     ?>
