@@ -102,9 +102,44 @@ class ConsultaController extends Controller
                     return $this->redirect(['view', 'id' => $model->idConsulta]);
 
             }
+
+            $rec = new \common\models\Receita();
+           $med = new \common\models\Medicamento();
+           //$recmed = new \common\models\ReceitaMedicamento();
+
+            if ($rec->load(Yii::$app->request->post()) && $med->load(Yii::$app->request->post()) &&  $recmed->load(Yii::$app->request->post())) {
+
+                $model = Consulta::findOne($id);
+                $rec->Consulta_idConsulta = $model->idConsulta;
+              //  $recmed->Receita_idReceita = $rec->idReceita;
+              /*  $recmed->Medicamento_idMedicamento = $med->idMedicamento;*/
+
+                //ALTERAR NA DB RECEITAS HAS MEDICAMENTO POR FK NA Receita_idReceita
+
+
+
+
+                   // $med->save();
+
+                 if($rec->save() &&  $med->save() /* && $recmed->save()*/) {
+
+                 return true;
+
+
+                }
+
+                throw new NotFoundHttpException('Não foi possivel passar a receita!');
+
+            }
+
+
+
             return $this->render('consultaview', [
                 'model' => $model,
                 'ftec' => $ftec,
+                'rec' => $rec,
+                'med' => $med,
+               // 'recmed' => $recmed
 
             ]);
     }
