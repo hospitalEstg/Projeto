@@ -49,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <tr>
                             <td>Descrição: <?= $consulta->Descricao; ?></td>
                             <td>Hora: <?= $consulta->hora; ?></td>
+                            
                         </tr>
                         <tr>
                             <td></td>
@@ -65,9 +66,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php } }
             ?>
         </div>
+    </div>
+    <div class="col-lg-12"><hr></div>
+    <div class="col-lg-6" >
+    </div>
+    <div class="col-lg-6" >
+
         <br>
         <?= Html::a('Adicionar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-
     </div>
+
 </div>
 
