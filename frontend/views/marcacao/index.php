@@ -15,19 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
         <h2><b>Próximas Consultas</b></h2>
         <br>
         <div style="width: 500px; height: 300px; overflow-y: auto";>
-            <?php  foreach($model as $marcacao){
-                if($marcacao->Pessoa_idPessoa == Yii::$app->user->identity->pessoa->idPessoa && $marcacao->Consulta_idConsulta != null ) {
-                    ?>
-                    <table class="table table-bordered">
-                        <tr>
-                            <td>Estado: <?php if ( $marcacao->Estado == 0){echo 'A aguardar marcação ...';} else echo 'Marcação concluida '; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Descrição: <?= $marcacao->Descricao; ?></td>
-                        </tr>
-                    </table>
-                <?php } }
-            ?>
+            <?php
+            foreach ($model_2 as $pessoa){
+                foreach ($model_1 as $consulta){
+                    foreach($model as $marcacao){
+                        if($marcacao->Pessoa_idPessoa == Yii::$app->user->identity->pessoa->idPessoa && $marcacao->Consulta_idConsulta != null && $consulta->idConsulta==$marcacao->Consulta_idConsulta && $consulta->idMedico==$pessoa->idPessoa) {
+                            ?>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Medico: <?= $pessoa->Nome ?></th>
+                                    <td>Data: <?= $consulta->DataConsulta ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Descrição: <?= $marcacao->Descricao; ?></td>
+                                    <td>Hora: <?= $consulta->hora; ?></td>
+                                </tr>
+                            </table>
+                        <?php } } } }
+                ?>
         </div>
     </div>
 
