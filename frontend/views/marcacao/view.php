@@ -6,14 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\MarcacaoConsulta */
 
-$this->title = $model->idMarcacao_Consulta;
+$this->title = 'Atualizar';
 $this->params['breadcrumbs'][] = ['label' => 'Marcacao Consultas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="marcacao-consulta-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'idMarcacao_Consulta' => $model->idMarcacao_Consulta, 'Pessoa_idPessoa' => $model->Pessoa_idPessoa], ['class' => 'btn btn-primary']) ?>
@@ -29,11 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-
-            'Estado',
             'Descricao',
-            'Urgente',
         ],
     ]) ?>
+
 
 </div>

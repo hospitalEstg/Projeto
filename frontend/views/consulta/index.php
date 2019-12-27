@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-lg-6" >
 
         <br>
-        <?= Html::a('Adicionar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Marcar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
     </div>
 
 </div>
