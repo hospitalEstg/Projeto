@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><?= Html::a('Update', ['view', 'id' => $ficha->idFichaClinica], ['class' => 'btn btn-primary']) ?></td>
+                                        <td><?= Html::a('Ver detalhes', ['view', 'id' => $ficha->idFichaClinica], ['class' => 'btn btn-primary']) ?></td>
                                     </tr>
                                 </table>
                                 <br>
