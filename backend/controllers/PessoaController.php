@@ -35,12 +35,10 @@ class PessoaController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Pessoa::find(),
-        ]);
+        $pessoas = Pessoa::find()->all();
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'pessoas' => $pessoas,
         ]);
     }
 
