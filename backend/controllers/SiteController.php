@@ -7,11 +7,27 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 
+    /** @var LoginForm $model */
+
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+
+
+
+
+
+
+
+
+  /*  if(\yii::$app->user->can('updatePost')) {
+        echo ("Pode atualizar post");
+        }*/
+
+
+
     /**
      * {@inheritdoc}
      */
@@ -29,6 +45,8 @@ class SiteController extends Controller
                         'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
+
+
                     ],
                 ],
             ],
@@ -70,12 +88,39 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        /*if (!Yii::$app->user->isGuest) {
             return $this->goHome();
-        }
+        }*/
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+       if (!\Yii::$app->user->isGuest) {
+              return $this->goHome();
+          }
+
+          $model = new LoginForm();
+          /* if ($model->load(Yii::$app->request->post()) && $model->login()) {
+              //check user roles, is user is Admin?
+              if (Yii::$app->user->identity->isAdmin)
+
+              {
+                  // yes he is Admin, so redirect page
+                  return $this->goBack();
+              }
+              else // if he is not an Admin then what :P
+              {   // put him out :P Automatically logout.
+                  Yii::$app->user->logout();
+                  // set error on login page.
+                  \Yii::$app->getSession()->setFlash('error', 'You are not authorized to login Admin\'s penal.<br /> Please use valid Username & Password.<br />Please contact Administrator for details.');
+                  //redirect again page to login form.
+                  return $this->redirect(['site/login']);
+              }
+
+          } else {
+              return $this->render('login', [
+                  'model' => $model,
+              ]);
+          }
+
+       */if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
             $model->password = '';
@@ -83,7 +128,7 @@ class SiteController extends Controller
             return $this->render('login', [
                 'model' => $model,
             ]);
-        }
+         }
     }
 
     /**

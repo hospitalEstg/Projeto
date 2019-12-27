@@ -37,13 +37,11 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Pessoa', 'url' => ['/pessoa/index']],
+        ['label' => 'Gestão de Utilizadores', 'url' => ['/pessoa/index']],
         ['label' => 'Ftecnica', 'url' => ['/ftecnica/index']],
         ['label' => 'Marcacao Consulta', 'url' => ['/marcacao/index']],
         ['label' => 'Consultas', 'url' => ['/consulta/index']],
-        ['label' => 'Medicamentos', 'url' => ['/medicamento/index']],
-        ['label' => 'Receitas', 'url' => ['/receita/index']],
-        ['label' => 'Receitas_medicamento', 'url' => ['/rmedicamento/index']],
+
 
     ];
     if (Yii::$app->user->isGuest) {

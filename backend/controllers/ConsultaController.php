@@ -87,6 +87,8 @@ class ConsultaController extends Controller
       public function actionConsulta($id)
 
         {
+         /*  if(\yii::$app->user->can('createPost')) {****************************/
+
             $model = Consulta::findOne($id);
             $ftec = new \common\models\FichaTecnica();
 
@@ -127,11 +129,12 @@ class ConsultaController extends Controller
 
 
                 }
+        }
 
-                throw new NotFoundHttpException('Não foi possivel passar a receita!');
-
-            }
-
+           /* }
+            else
+                throw new NotFoundHttpException('Não tem permissoes!');
+*/
 
 
             return $this->render('consultaview', [
