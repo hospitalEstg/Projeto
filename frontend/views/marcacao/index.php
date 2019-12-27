@@ -19,8 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             foreach ($model_2 as $pessoa){
                 foreach ($model_1 as $consulta){
                     foreach($model as $marcacao){
-                        if($marcacao->Pessoa_idPessoa == Yii::$app->user->identity->pessoa->idPessoa && $marcacao->Consulta_idConsulta != null && $consulta->idConsulta==$marcacao->Consulta_idConsulta && $consulta->idMedico==$pessoa->idPessoa) {
-                            ?>
+                        if($marcacao->Pessoa_idPessoa == Yii::$app->user->identity->pessoa->idPessoa && $marcacao->Consulta_idConsulta != null && $consulta->idConsulta==$marcacao->Consulta_idConsulta && $consulta->idMedico==$pessoa->idPessoa) {?>
                             <table class="table table-bordered">
                                 <tr>
                                     <th>Medico: <?= $pessoa->Nome ?></th>
