@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="marcacao-consulta-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><b>Marcação de Consulta<b></b></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

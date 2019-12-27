@@ -26,7 +26,7 @@ HTML;
         
                 <div class="body-content">
                     <div class="row consulta-layout">
-                        <a href="consulta/index">
+                        <a href="marcacao/index">
                         <div class="col-lg-4 consulta-layout-1">
                             <img src="/img/icone_consulta.png" alt="as" height="100px">
                             <h1><b>Consultas</b></h1>

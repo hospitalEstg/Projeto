@@ -1,6 +1,8 @@
 <?php
 
 namespace frontend\controllers;
+use common\models\Consulta;
+use common\models\Pessoa;
 use Yii;
 use common\models\MarcacaoConsulta;
 use yii\data\ActiveDataProvider;
@@ -35,13 +37,20 @@ class MarcacaoController extends Controller
      */
     public function actionIndex()
     {
-
-        $marcacao = MarcacaoConsulta::find()->all();
+        /* $dataProvider = new ActiveDataProvider([
+             'query' => Consulta::find(),
+         ]);*/
+        $model =MarcacaoConsulta::find()->all();
+        $model_1=Consulta::find()->all();
+        $model_2=Pessoa::find()->all();
 
         return $this->render('index', [
-            'marcacao' => $marcacao,
+            'model' => $model,
+            'model_1' => $model_1,
+            'model_2' => $model_2,
         ]);
     }
+
 
     /**
      * Displays a single MarcacaoConsulta model.

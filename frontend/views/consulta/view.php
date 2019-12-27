@@ -12,11 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="consulta-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idConsulta], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Atualizar', ['update', 'id' => $model->idConsulta], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->idConsulta], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -29,14 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idConsulta',
             'DataConsulta',
+            'hora',
             'TipoConsulta',
             'Descricao',
-            'Estado',
-            'idMedico',
-            'idFuncionario',
-            'hora',
         ],
     ]) ?>
 
