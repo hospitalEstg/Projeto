@@ -9,13 +9,14 @@ $this->title = 'Hospital ESTG';
     <?php
     if (Yii::$app->user->isGuest) {
         echo <<<HTML
-        <div class="jumbotron">
-                    <h1>Bem Vindo,</h1>
-                </div>
-            
+ 
                 <div class="body-content">
-            
-
+                    <h1>Bem Vindo,</h1>
+                            <div class="jumbotron">
+                            <h6>Efetue o <a href="site/login">Login</a>/<a href="site/signup">Registar</a> para aceder ao hospital</h6>
+                            <img src="/img/frontimage.jpg" alt="as" height="500px">
+                            </div>
+                    
                     
                 </div>
 HTML;
