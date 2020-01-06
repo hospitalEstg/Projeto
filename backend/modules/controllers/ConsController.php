@@ -10,6 +10,7 @@ class ConsController extends ActiveController
 {
     public $modelClass = 'common\models\Consulta';
 
+//
     public function auth($username, $password)
     { $user = User::findByUsername($username);
         if ($user && $user->validatePassword($password)) {
