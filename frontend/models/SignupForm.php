@@ -82,7 +82,7 @@ class SignupForm extends Model
                 if ( $pessoa->save()  && $this->sendEmail($user) ) {
 
                     $auth = \Yii::$app->authManager;
-                    $utenteRole = $auth->getRole('utente');
+                    $utenteRole = $auth->getRole(Yii::$app->request->get("TipoUtilizador"));
                     $auth->assign($utenteRole, $user->getId());
 
                     return true;

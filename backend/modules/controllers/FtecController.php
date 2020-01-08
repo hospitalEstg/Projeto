@@ -1,9 +1,13 @@
 <?php
 
+
 namespace backend\modules\controllers;
 use common\models\User;
-use yii\filters\auth\HttpBasicAuth;
+use common\models\LoginForm;
 use yii\rest\ActiveController;
+use yii\filters\auth\QueryParamAuth;
+
+
 
 class FtecController extends ActiveController
 {

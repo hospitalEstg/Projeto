@@ -48,6 +48,7 @@ class SiteController extends Controller
 
 
                     ],
+
                 ],
             ],
             'verbs' => [

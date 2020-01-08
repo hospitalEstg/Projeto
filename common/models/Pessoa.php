@@ -104,4 +104,12 @@ class Pessoa extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'idUser']);
     }
+
+    /**
+         * @return \yii\db\ActiveQuery
+         */
+        public function getMarcacao()
+        {
+            return $this->hasMany(MarcacaoConsulta::className(), ['Pessoa_idPessoa' => 'idPessoa']);
+        }
 }

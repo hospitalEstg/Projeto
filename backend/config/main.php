@@ -67,8 +67,11 @@ return [
                             'api/rec',
                             'api/recmed',
                             'api/user',
+                           'api/users',
                         ],
                         'pluralize' => false,
+                        'except' => ['delete','update'],
+
                     ],
 
 

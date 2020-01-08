@@ -48,19 +48,19 @@ class m191029_101340_init_rbac_author extends Migration
         $auth->add($guest);
 
 
-        $utente = $auth->createRole('utente');
+        $utente = $auth->createRole('Utente');
         $auth->add($utente);
         $auth->addChild($utente, $viewPost);
         $auth->addChild($utente, $updateOwnPost);
         $auth->addChild($utente, $createPost);
 
  // add "admin" role and give this role the "createPost" permission
-        $secretaria = $auth->createRole('secretaria');
+        $secretaria = $auth->createRole('Secretaria');
         $auth->add($secretaria);
         $auth->addChild($secretaria, $utente);
         $auth->addChild($secretaria, $updatePost);
 
-        $medico = $auth->createRole('medico');
+        $medico = $auth->createRole('Medico');
         $auth->add($medico);
         $auth->addChild($medico, $secretaria);
 
