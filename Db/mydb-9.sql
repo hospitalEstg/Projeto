@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: 11-Dez-2019 às 11:54
+-- Generation Time: 08-Jan-2020 às 21:31
 -- Versão do servidor: 5.7.26
 -- versão do PHP: 7.2.18
 
@@ -60,11 +60,10 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 --
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
-('guest', '4', 1576064717),
-('medico', '3', 1576064717),
-('secretaria', '2', 1576064717),
-('utente', '1', 1576064717),
-('utente', '3', 1576064733);
+('guest', '4', 1578482779),
+('Medico', '3', 1578482779),
+('Secretaria', '2', 1578482779),
+('Utente', '1', 1578482779);
 
 -- --------------------------------------------------------
 
@@ -91,15 +90,15 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-('createPost', 2, 'Create a post', NULL, NULL, 1576064717, 1576064717),
-('deletePost', 2, 'Delete a post', NULL, NULL, 1576064717, 1576064717),
-('guest', 1, NULL, NULL, NULL, 1576064717, 1576064717),
-('medico', 1, NULL, NULL, NULL, 1576064717, 1576064717),
-('secretaria', 1, NULL, NULL, NULL, 1576064717, 1576064717),
-('updateOwnPost', 2, 'Update own post', NULL, NULL, 1576064717, 1576064717),
-('updatePost', 2, 'Update a post', NULL, NULL, 1576064717, 1576064717),
-('utente', 1, NULL, NULL, NULL, 1576064717, 1576064717),
-('viewPost', 2, 'View a post', NULL, NULL, 1576064717, 1576064717);
+('createPost', 2, 'Create a post', NULL, NULL, 1578482779, 1578482779),
+('deletePost', 2, 'Delete a post', NULL, NULL, 1578482779, 1578482779),
+('guest', 1, NULL, NULL, NULL, 1578482779, 1578482779),
+('Medico', 1, NULL, NULL, NULL, 1578482779, 1578482779),
+('Secretaria', 1, NULL, NULL, NULL, 1578482779, 1578482779),
+('updateOwnPost', 2, 'Update own post', NULL, NULL, 1578482779, 1578482779),
+('updatePost', 2, 'Update a post', NULL, NULL, 1578482779, 1578482779),
+('Utente', 1, NULL, NULL, NULL, 1578482779, 1578482779),
+('viewPost', 2, 'View a post', NULL, NULL, 1578482779, 1578482779);
 
 -- --------------------------------------------------------
 
@@ -120,12 +119,12 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
-('utente', 'createPost'),
-('medico', 'secretaria'),
-('utente', 'updateOwnPost'),
-('secretaria', 'updatePost'),
-('secretaria', 'utente'),
-('utente', 'viewPost');
+('Utente', 'createPost'),
+('Medico', 'Secretaria'),
+('Utente', 'updateOwnPost'),
+('Secretaria', 'updatePost'),
+('Secretaria', 'Utente'),
+('Utente', 'viewPost');
 
 -- --------------------------------------------------------
 
@@ -161,14 +160,16 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   PRIMARY KEY (`idConsulta`),
   KEY `fk_Pessoa_Medico` (`idMedico`),
   KEY `fk_Pessoa_Funcionario` (`idFuncionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `consulta`
 --
 
 INSERT INTO `consulta` (`idConsulta`, `DataConsulta`, `hora`, `TipoConsulta`, `Descricao`, `Estado`, `idMedico`, `idFuncionario`) VALUES
-(2, '2015-04-04', '23:00:00', 'blabla', 'n', 0, 4, 2);
+(1, '2020-01-17', '17:13:00', 'blabla', 'descricao', 0, 2, 2),
+(3, '2020-01-23', '20:00:00', 'jbnbn', 'bnbb', 0, 2, 2),
+(5, '2020-01-29', '06:00:00', 'teset', 'testedescricao', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -201,17 +202,19 @@ CREATE TABLE IF NOT EXISTS `marcacao_consulta` (
   `Descricao` varchar(150) NOT NULL,
   `Urgente` tinyint(2) NOT NULL,
   PRIMARY KEY (`idMarcacao_Consulta`,`Pessoa_idPessoa`) USING BTREE,
+  UNIQUE KEY `Consulta_idConsulta` (`Consulta_idConsulta`),
   KEY `fk_Pessoa_Utente` (`Pessoa_idPessoa`),
   KEY `fk_Consulta_Consulta` (`Consulta_idConsulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `marcacao_consulta`
 --
 
 INSERT INTO `marcacao_consulta` (`idMarcacao_Consulta`, `Pessoa_idPessoa`, `Consulta_idConsulta`, `Estado`, `Descricao`, `Urgente`) VALUES
-(1, 1, NULL, 0, 'quero uma consulta', 1),
-(3, 1, NULL, 0, 'teste', 0);
+(2, 1, 1, 0, 'quero uma consulta', 1),
+(3, 1, 3, 0, 'descricao consulta2', 0),
+(4, 2, 5, 0, 'xzxzxz', 1);
 
 -- --------------------------------------------------------
 
@@ -248,7 +251,7 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m130524_201442_init', 1573666549),
 ('m190124_110200_add_verification_token_column_to_user_table', 1573666549),
 ('m191113_182207_user', 1573669376),
-('m191029_101340_init_rbac_author', 1576064717);
+('m191029_101340_init_rbac_author', 1578482779);
 
 -- --------------------------------------------------------
 
@@ -268,20 +271,17 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
   `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idPessoa`),
   KEY `fk_User_idUser` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `pessoa`
 --
 
 INSERT INTO `pessoa` (`idPessoa`, `Nome`, `DataNascimento`, `Morada`, `NumUtenteSaude`, `NumIDCivil`, `TipoUtilizador`, `idUser`) VALUES
-(1, 'mica', '1999-06-04', 'adsjkkjda', 111111111, 123123123, 'Utente', 1),
-(2, 'mica', '1999-06-04', 'adsjkkjda', 111111111, 123123123, 'Utente', 1),
-(3, 'mica', '1999-06-04', 'wsma', 111111111, 111111111, 'Utente', 1),
-(4, 'func', '1980-03-03', 'hsjsk', 888888888, 888888888, 'Funcionario', 1),
-(5, 'medico', '1990-04-04', 'ewjdj', 898999999, 999999999, 'Medico', 1),
-(6, 'func', '1990-04-03', 'sadasd', 555555555, 555555555, 'Funcionario', 2),
-(7, 'mica', '2019-11-27', 'jdfkj', 234444444, 444444444, 'Utente', 3);
+(1, 'mica', '2020-01-21', 'mica', 121212121, 121212121, 'Utente', 1),
+(2, 'micaela', '2019-12-04', 'mica', 121212121, 121212121, 'Utente', 2),
+(3, 'func', '2020-01-02', 'func', 121313133, 131313133, 'Funcionario', 3),
+(4, 'teste', '2020-01-09', 'teste', 123456788, 123456788, 'Medico', 4);
 
 -- --------------------------------------------------------
 
@@ -337,16 +337,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
-(1, 'admin', '6Ko_kKxxbJ1d3Vm09QwyvQAm8h9Hjo02', '$2y$13$GCIMK096OOYoqqncn.fzpePI7PVTwL/bgbXzfTAhz9NvEQdDkhP0y', NULL, 'admin@hotmail.com', 10, 1574955316, 1574955316, 'l_1E-sBdZeP0KNmYUmLDR2jxm4dGfikK_1574955316'),
-(2, 'func', 'Ps9km9VRfV58reL-_Bd9Ni0ApdMjUKVt', '$2y$13$4ZCdONE2.K5RXe3NtHGsGeos0mu5d7VpjSGhL8FNK1ZoedriT.3QC', NULL, 'func@pt.pt', 10, 1575304244, 1575304244, 'p7evZ3fs4KABLuenLOuppAA0pqsMT761_1575304244'),
-(3, 'mica', 'kTpY-wC59L7JvSz9OuDHtg3t-vMU60fN', '$2y$13$Af18xVDmS3mIATr.fUbZg.u/HHnXzQVbgS0IrucGcpDYVL2Zc5F9W', NULL, 'micaelamartins12@hotmail.com', 10, 1576064733, 1576064733, NULL);
+(1, 'mica', '003qFCHhsW0Qn5lSi4Hu0-ZR15WNkOch', '$2y$13$mDYjOOC.Hl8wL4vYwSEXeeEaXTqf6eVpguH3UEZrbZV2CXHe9Rv7C', NULL, 'mica@m.pt', 10, 1578341167, 1578341167, NULL),
+(2, 'micaela', '8CYzyDeicrkr2TuiZtrR-AeOGiYnRlqe', '$2y$13$lR6MatIwVNs4i9Gc/GZTqe/Z7JbSCLZYSZxI4fJ7UAssywVh9FB2i', NULL, 'mica@mica.pt', 10, 1578341367, 1578341367, NULL),
+(3, 'func', 'rU5x4qa7DgpP4rybAPteMwSdkCFV66Qq', '$2y$13$eeQtKkzfs4KXWmsA4HyRf.NJUqrXwnUcTAjcjPoiqBi3J8VesCGmq', NULL, 'func@func.pt', 9, 1578390780, 1578390780, NULL),
+(4, 'teste', 'LC8WOVQNvTsp-uHfdufpOvYbooclXy0i', '$2y$13$u5iYwfKXPR6nNE4a4OXOAe8x/6NjBjYPBMJKRmXtvYCkvz5g7bh8S', NULL, 'teste@f.t', 9, 1578482834, 1578482834, NULL);
 
 --
 -- Constraints for dumped tables
