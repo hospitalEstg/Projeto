@@ -70,8 +70,21 @@ return [
                            'api/users',
                         ],
                         'pluralize' => false,
-                        'except' => ['delete','update'],
+                       // 'except' => ['delete'],
 
+                        'extraPatterns' => [
+                                    'POST consulta' => 'consulta',
+                                    'PUT consultaput/{id}'=> 'consultaput',
+                                    'DELETE consultadel/{id}' =>'consultadel',
+                                    'GET set/{limit}' => 'set',
+                                    'GET {id}/estado'=>'estado',
+                                    'PUT marcput/{id}'=>'marcput',
+                                ],
+                                'tokens' => [
+                                '{id}' => '<id:\\d+>', //O standard tem que aparecer!
+                                '{limit}' => '<limit:\\d+>',
+
+                                ],
                     ],
 
 

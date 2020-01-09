@@ -37,6 +37,17 @@ class UserController extends ActiveController
         return $user->pessoa;
     }
 
+   /*public function actionCreate(){
+    $user = new User;
+        $username =Yii::$app->request->post("username");
+        $email =Yii::$app->request->post("email");
+        $password= Yii::$app->request->post->setPassword($this->password);
+        $auth =Yii::$app->request->post(generateAuthKey());
+        //$email=Yii::$app->request->post("email");
 
+        $user->save();
+
+
+    }*/
 
 }
