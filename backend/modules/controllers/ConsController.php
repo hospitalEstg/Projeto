@@ -46,16 +46,24 @@ class ConsController extends ActiveController
            foreach($rec as $item){
                 if($item->Consulta_idConsulta != null){
                     array_push($ret, $item->Consulta_idConsulta);
+
+
                 }
            }
-          // $ret= Consulta::find()->where(['idConsulta' => $rec->Consulta_idConsulta])->all();
+        //   return Consulta::find()->where(['idConsulta' => $rec->Consulta_idConsulta)->all();
+
+        //  $ret= Consulta::find()->where(['idConsulta' => $rec->Consulta_idConsulta])->all();
                // var_dump($ret);
-             return $ret;
+          //return Consulta::find()->where(['idConsulta' => $rec->$ret])->all();
 
        }
 
 
        public function actionConsulta(){
+
+
+
+
             $Data=Yii::$app->request->post('DataConsulta');
             $Hora=Yii::$app->request->post('hora');
             $TipoConsulta=Yii::$app->request->post('TipoConsulta');
@@ -73,7 +81,12 @@ class ConsController extends ActiveController
             $conmodel->idMedico = $idMedico;
             $conmodel->idFuncionario = $idFuncionario;
 
-            $ret = $conmodel->save(); return ['SaveError'=> $ret];
+            $ret = $conmodel->save();
+
+
+                return ['SaveError'=> $ret];
+
+
 
 
             }

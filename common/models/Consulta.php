@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Json;
+
 
 /**
  * This is the model class for table "consulta".
@@ -112,7 +114,7 @@ class Consulta extends \yii\db\ActiveRecord
         {
             parent::afterSave($insert, $changedAttributes);
 
-
+            $idConsulta = $this->idConsulta;
             $DataConsulta = $this->DataConsulta;
             $hora = $this->hora;
             $TipoConsulta = $this->TipoConsulta;
@@ -122,46 +124,51 @@ class Consulta extends \yii\db\ActiveRecord
             $idFuncionario = $this->idFuncionario;
 
 
-            $myObj = new \stdClass();
+            $myObj = new Consulta();
+            $myObj->idConsulta= $idConsulta;
+            $myObj->DataConsulta = $DataConsulta;
+            $myObj->hora = $hora;
+            $myObj->TipoConsulta = $TipoConsulta;
+            $myObj->Estado = $Estado;
+            $myObj->idMedico = $idMedico;
+            $myObj->idFuncionario = $idFuncionario;
+             $myObj = Json::encode($myObj);
+                  if ($insert) {
+                        $this->FazPublish("INSERT", $myObj);
+                    } else
+                        $this->FazPublish("UPDATE", $myObj);
 
-            $myObj->id = $DataConsulta;
-            $myObj->id = $hora;
-            $myObj->id = $TipoConsulta;
-            $myObj->id = $Estado;
-            $myObj->id = $idMedico;
-            $myObj->id = $idFuncionario;
-
-            $myJSON = json_encode($myObj);
-            if ($insert)
-                $this->FazPublish("INSERT", $myJSON);
-            else
-                $this->FazPublish("UPDATE", $myJSON);
         }
 
         public function afterDelete()
         {
             parent::afterDelete();
-            $prod_id = $this->idMarcacao_Consulta;
-            $myObj = new \stdClass();
+            $prod_id = $this->idConsulta;
+            $myObj = new Consulta();
             $myObj->id = $prod_id;
-            $myJSON = json_encode($myObj);
-            $this->FazPublish("DELETE", $myJSON);
+            $myObj = Json::encode($myObj);
+            $this->FazPublish("DELETE", $myObj);
         }
 
         public function FazPublish($canal, $msg)
         {
-            $server = "127.0.0.1";
-            $port = 1883;
-            $username = ""; // set your username
-            $password = ""; // set your password
-            $client_id = "phpMQTT-publisher"; // unique!
-            $mqtt = new phpMQTT($server, $port, $client_id);
-            if ($mqtt->connect(true, NULL, $username, $password)) {
-                $mqtt->publish($canal, $msg, 0);
-                $mqtt->close();
+             $server = '127.0.0.1';
+                    $port = 1883;
+                    $username = "";
+                    $password = "";
+                    $client_id = uniqid();
+                    $mqtt= new phpMQTT($server, $port, $client_id);
+                    try {
+                        if ($mqtt->connect(true)) {
+                            $mqtt->publish($canal, $msg, 1);
+                            $mqtt->disconnect();
+                            $mqtt->close();
 
-
-            }
-            else {file_put_contents("debug.output","Time out");}
+                        } else {
+                            file_put_contents("debug.output", "Time out!");
+                        }
+                    }catch (\Exception $X)
+                    {
+                    }
         }
 }
