@@ -79,6 +79,10 @@ return [
                                     'GET set/{limit}' => 'set',
                                     'GET {id}/estado'=>'estado',
                                     'PUT marcput/{id}'=>'marcput',
+                                    'DELETE marcdel/{id}'=>'marcdel',
+                                    'PUT pessput/{id}'=> 'pessput',
+                                    //'DELETE pessdel/{id}' =>'pessdel', // pessoa cannot delete
+                                    'GET pesset/{limit}' => 'pessset',
                                 ],
                                 'tokens' => [
                                 '{id}' => '<id:\\d+>', //O standard tem que aparecer!

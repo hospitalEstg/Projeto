@@ -107,4 +107,61 @@ class Consulta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Receita::className(), ['Consulta_idConsulta' => 'idConsulta']);
     }
+
+      public function afterSave($insert, $changedAttributes)
+        {
+            parent::afterSave($insert, $changedAttributes);
+
+
+            $DataConsulta = $this->DataConsulta;
+            $hora = $this->hora;
+            $TipoConsulta = $this->TipoConsulta;
+            $Descricao = $this->Descricao;
+            $Estado = $this->Estado;
+            $idMedico = $this->idMedico;
+            $idFuncionario = $this->idFuncionario;
+
+
+            $myObj = new \stdClass();
+
+            $myObj->id = $DataConsulta;
+            $myObj->id = $hora;
+            $myObj->id = $TipoConsulta;
+            $myObj->id = $Estado;
+            $myObj->id = $idMedico;
+            $myObj->id = $idFuncionario;
+
+            $myJSON = json_encode($myObj);
+            if ($insert)
+                $this->FazPublish("INSERT", $myJSON);
+            else
+                $this->FazPublish("UPDATE", $myJSON);
+        }
+
+        public function afterDelete()
+        {
+            parent::afterDelete();
+            $prod_id = $this->idMarcacao_Consulta;
+            $myObj = new \stdClass();
+            $myObj->id = $prod_id;
+            $myJSON = json_encode($myObj);
+            $this->FazPublish("DELETE", $myJSON);
+        }
+
+        public function FazPublish($canal, $msg)
+        {
+            $server = "127.0.0.1";
+            $port = 1883;
+            $username = ""; // set your username
+            $password = ""; // set your password
+            $client_id = "phpMQTT-publisher"; // unique!
+            $mqtt = new phpMQTT($server, $port, $client_id);
+            if ($mqtt->connect(true, NULL, $username, $password)) {
+                $mqtt->publish($canal, $msg, 0);
+                $mqtt->close();
+
+
+            }
+            else {file_put_contents("debug.output","Time out");}
+        }
 }

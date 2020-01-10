@@ -40,11 +40,17 @@ class ConsController extends ActiveController
        public function actionIndex(){
           $actoken = Yii::$app->request->get("access-token");
            $user = User::findIdentityByAccessToken($actoken);
-           //$profile = Pessoa::find()->where(['idUser' => $user->id])->one();
-           //$rec= MarcacaoConsulta::find()->where(['Pessoa_idPessoa' => $profile->idPessoa])->one();
-           $rec= Consulta::find()->all();
-
-             return $rec;
+           $profile = Pessoa::find()->where(['idUser' => $user->id])->one();
+           $rec= MarcacaoConsulta::find()->where(['Pessoa_idPessoa' => $profile->idPessoa])->all();
+           $ret =  array();
+           foreach($rec as $item){
+                if($item->Consulta_idConsulta != null){
+                    array_push($ret, $item->Consulta_idConsulta);
+                }
+           }
+          // $ret= Consulta::find()->where(['idConsulta' => $rec->Consulta_idConsulta])->all();
+               // var_dump($ret);
+             return $ret;
 
        }
 
@@ -57,7 +63,7 @@ class ConsController extends ActiveController
             $Estado=Yii::$app->request->post('Estado');
             $idMedico=Yii::$app->request->post('idMedico');
             $idFuncionario=Yii::$app->request->post('idFuncionario');
-            //    $var_dump($Data); die();
+
             $conmodel = new $this->modelClass;
             $conmodel->DataConsulta = $Data;
             $conmodel->hora = $Hora;

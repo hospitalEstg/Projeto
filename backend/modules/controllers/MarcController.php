@@ -17,7 +17,6 @@ class MarcController extends ActiveController
 {
    public $modelClass = 'common\models\MarcacaoConsulta';
 
-
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -37,9 +36,11 @@ class MarcController extends ActiveController
            $actoken = Yii::$app->request->get("access-token");
             $user = User::findIdentityByAccessToken($actoken);
              $profile = Pessoa::find()->where(['idUser' => $user->id])->one();
-           $rec= MarcacaoConsulta::find()->where(['Pessoa_idPessoa' => $profile->idPessoa])->one();
+          $rec= MarcacaoConsulta::find()->where(['Pessoa_idPessoa' => $profile->idPessoa])->all();
 
-            return $user->pessoa->marcacao;
+
+            return $rec;
+
         }
 
         public function actionMarccreate(){
@@ -59,7 +60,7 @@ class MarcController extends ActiveController
         $ret = $marcmodel->save(); return ['SaveError'=> $ret];
         }
 
-       /* public function actionMarcput($id){
+        public function actionMarcput($id){
                         $idPessoa=Yii::$app->request->post('Pessoa_idPessoa');
                         $idConsulta=Yii::$app->request->post('Consulta_idConsulta');
                         $Estado=Yii::$app->request->post('Estado');
@@ -82,7 +83,17 @@ class MarcController extends ActiveController
                               }
                              throw new \yii\web\NotFoundHttpException("Client id not found!");
 
-        }*/
+        }
+
+           public function actionMarcdel($id){
+                        $marcmodel = new $this->modelClass;
+                        $ret= $marcmodel->deleteAll("id=".$id);
+                        if($ret){
+                                Yii::$app->response->statusCode =200; return ['code'=>'ok'];
+                        }
+                            Yii::$app->response->statusCode =404; return ['code'=>'error'];
+
+                }
 
 
 
