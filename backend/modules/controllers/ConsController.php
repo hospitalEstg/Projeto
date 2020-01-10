@@ -42,15 +42,15 @@ class ConsController extends ActiveController
            $user = User::findIdentityByAccessToken($actoken);
            $profile = Pessoa::find()->where(['idUser' => $user->id])->one();
            $rec= MarcacaoConsulta::find()->where(['Pessoa_idPessoa' => $profile->idPessoa])->all();
-           $ret =  array();
+          /* $ret =  array();
            foreach($rec as $item){
                 if($item->Consulta_idConsulta != null){
                     array_push($ret, $item->Consulta_idConsulta);
 
 
                 }
-           }
-        //   return Consulta::find()->where(['idConsulta' => $rec->Consulta_idConsulta)->all();
+           }*/
+          return Consulta::find()->all();
 
         //  $ret= Consulta::find()->where(['idConsulta' => $rec->Consulta_idConsulta])->all();
                // var_dump($ret);

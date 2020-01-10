@@ -132,6 +132,7 @@ class Consulta extends \yii\db\ActiveRecord
             $myObj->Estado = $Estado;
             $myObj->idMedico = $idMedico;
             $myObj->idFuncionario = $idFuncionario;
+
              $myObj = Json::encode($myObj);
                   if ($insert) {
                         $this->FazPublish("INSERT", $myObj);
@@ -143,9 +144,9 @@ class Consulta extends \yii\db\ActiveRecord
         public function afterDelete()
         {
             parent::afterDelete();
-            $prod_id = $this->idConsulta;
+            $id = $this->idConsulta;
             $myObj = new Consulta();
-            $myObj->id = $prod_id;
+            $myObj->idConsulta = $id;
             $myObj = Json::encode($myObj);
             $this->FazPublish("DELETE", $myObj);
         }

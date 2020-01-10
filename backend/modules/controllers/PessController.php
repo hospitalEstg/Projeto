@@ -4,6 +4,7 @@
 namespace backend\modules\controllers;
 use common\models\User;
 use common\models\LoginForm;
+use common\models\Pessoa;
 use yii\rest\ActiveController;
 use yii\filters\auth\QueryParamAuth;
 use Yii;
@@ -33,11 +34,11 @@ class PessController extends ActiveController
      public function actionIndex(){
             $actoken = Yii::$app->request->get("access-token");
                         $user = User::findIdentityByAccessToken($actoken);
-                       //  $profile = Pessoa::find()->where(['idUser' => $user->id])->all();
+                         $profile = Pessoa::find()->where(['idUser' => $user->id])->all();
 
 
 
-                        return $user->pessoa;
+                        return $profile;
 
      }
 

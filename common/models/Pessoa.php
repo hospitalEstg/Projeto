@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Json;
+
 
 /**
  * This is the model class for table "pessoa".
@@ -112,4 +114,69 @@ class Pessoa extends \yii\db\ActiveRecord
         {
             return $this->hasMany(MarcacaoConsulta::className(), ['Pessoa_idPessoa' => 'idPessoa']);
         }
+
+         public function afterSave($insert, $changedAttributes)
+                {
+                    parent::afterSave($insert, $changedAttributes);
+
+                    $idPessoa = $this->idPessoa;
+                    $Nome = $this->Nome;
+                    $DataNascimento = $this->DataNascimento;
+                    $Morada = $this->Morada;
+                    $NumUtenteSaude = $this->NumUtenteSaude;
+                    $NumIDCivil = $this->NumIDCivil;
+                    $TipoUtilizador = $this->TipoUtilizador;
+                    $idUser = $this->idUser;
+
+
+
+                    $myObj = new Pessoa();
+                    $myObj->idPessoa= $idPessoa;
+                    $myObj->Nome = $Nome;
+                    $myObj->DataNascimento = $DataNascimento;
+                    $myObj->Morada = $Morada;
+                    $myObj->NumUtenteSaude = $NumUtenteSaude;
+                    $myObj->NumIDCivil = $NumIDCivil;
+                    $myObj->TipoUtilizador = $TipoUtilizador;
+                    $myObj->idUser = $idUser;
+
+                     $myObj = Json::encode($myObj);
+                          if ($insert) {
+                                $this->FazPublish("INSERT", $myObj);
+                            } else
+                                $this->FazPublish("UPDATE", $myObj);
+
+                }
+
+                public function afterDelete()
+                {
+                    parent::afterDelete();
+                    $id = $this->idPessoa;
+                    $myObj = new Pessoa();
+                    $myObj->idPessoa = $id;
+                    $myObj = Json::encode($myObj);
+                    $this->FazPublish("DELETE", $myObj);
+                }
+
+                public function FazPublish($canal, $msg)
+                {
+                     $server = '127.0.0.1';
+                      $port = 1883;
+                      $username = "";
+                      $password = "";
+                      $client_id = uniqid();
+                      $mqtt= new phpMQTT($server, $port, $client_id);
+                            try {
+                                if ($mqtt->connect(true)) {
+                                    $mqtt->publish($canal, $msg, 1);
+                                    $mqtt->disconnect();
+                                    $mqtt->close();
+
+                                } else {
+                                    file_put_contents("debug.output", "Time out!");
+                                }
+                            }catch (\Exception $X)
+                            {
+                            }
+                }
 }

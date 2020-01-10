@@ -8,6 +8,7 @@ use common\models\LoginForm;
 use yii\rest\ActiveController;
 use yii\filters\auth\QueryParamAuth;
 use Yii;
+use yii\helpers\Json;
 
 
 
@@ -51,8 +52,8 @@ class MarcController extends ActiveController
             $Urgente=Yii::$app->request->post('Urgente');
 
              $marcmodel = new $this->modelClass;
-                        $marcmodel->idPessoa = $idPessoa;
-                        $marcmodel->idPessoa = $idConsulta;
+                        $marcmodel->Pessoa_idPessoa = $idPessoa;
+                        $marcmodel->Consulta_idConsulta= $idConsulta;
                         $marcmodel->Estado = $Estado;
                         $marcmodel->Descricao = $Descricao;
                         $marcmodel->Urgente = $Urgente;
