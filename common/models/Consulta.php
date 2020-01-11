@@ -135,9 +135,9 @@ class Consulta extends \yii\db\ActiveRecord
 
              $myObj = Json::encode($myObj);
                   if ($insert) {
-                        $this->FazPublish("INSERT", $myObj);
+                        $this->FazPublish("INSERT CONSULTA", $myObj);
                     } else
-                        $this->FazPublish("UPDATE", $myObj);
+                        $this->FazPublish("UPDATE CONSULTA", $myObj);
 
         }
 
@@ -148,7 +148,7 @@ class Consulta extends \yii\db\ActiveRecord
             $myObj = new Consulta();
             $myObj->idConsulta = $id;
             $myObj = Json::encode($myObj);
-            $this->FazPublish("DELETE", $myObj);
+            $this->FazPublish("DELETE CONSULTA", $myObj);
         }
 
         public function FazPublish($canal, $msg)

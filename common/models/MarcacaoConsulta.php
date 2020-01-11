@@ -98,9 +98,9 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
 
         $myObj = Json::encode($myObj);
        if ($insert) {
-       $this->FazPublish("INSERT", $myObj);
+       $this->FazPublish("INSERT PEDIDO", $myObj);
            } else
-          $this->FazPublish("UPDATE", $myObj);
+          $this->FazPublish("UPDATE PEDIDO", $myObj);
 
     }
 
@@ -111,7 +111,7 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
         $myObj = new MarcacaoConsulta();
         $myObj->id = $prod_id;
         $myObj = json_encode($myObj);
-        $this->FazPublish("DELETE", $myObj);
+        $this->FazPublish("DELETE PEDIDO", $myObj);
     }
 
       public function FazPublish($canal, $msg)

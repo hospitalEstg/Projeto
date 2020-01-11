@@ -59,18 +59,17 @@ return [
                     [
                         'class' => 'yii\rest\UrlRule',
                         'controller' => [
-                            'api/default',
+
                             'api/cons',
                             'api/marc',
-                            'api/pess',
-                            'api/med',
-                            'api/rec',
-                            'api/recmed',
-                            'api/user',
+                             'api/pess',
+
+
                            'api/users',
                         ],
+
                         'pluralize' => false,
-                       // 'except' => ['delete'],
+
 
                         'extraPatterns' => [
                                     'POST consulta' => 'consulta',
@@ -81,7 +80,8 @@ return [
                                     'PUT marcput/{id}'=>'marcput',
                                     'DELETE marcdel/{id}'=>'marcdel',
                                     'PUT pessput/{id}'=> 'pessput',
-                                    //'DELETE pessdel/{id}' =>'pessdel', // pessoa cannot delete
+                                    'DELETE pessdel/{id}' =>'pessdel',
+                                  //  'POST marccreate' => 'marccreate',
                                     'GET pesset/{limit}' => 'pessset',
                                   'GET {id}/indexmarc'=>'indexmarc',
 

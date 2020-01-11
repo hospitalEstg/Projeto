@@ -20,6 +20,6 @@ class Module extends \yii\base\Module
         parent::init();
         //porque as apis sao stateless
              \Yii::$app->user->enableSession = false;
-        // custom initialization code goes here
+
     }
 }

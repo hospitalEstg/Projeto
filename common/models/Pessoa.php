@@ -142,9 +142,9 @@ class Pessoa extends \yii\db\ActiveRecord
 
                      $myObj = Json::encode($myObj);
                           if ($insert) {
-                                $this->FazPublish("INSERT", $myObj);
+                                $this->FazPublish("INSERT PESSOA", $myObj);
                             } else
-                                $this->FazPublish("UPDATE", $myObj);
+                                $this->FazPublish("UPDATE PESSOA", $myObj);
 
                 }
 
@@ -155,7 +155,7 @@ class Pessoa extends \yii\db\ActiveRecord
                     $myObj = new Pessoa();
                     $myObj->idPessoa = $id;
                     $myObj = Json::encode($myObj);
-                    $this->FazPublish("DELETE", $myObj);
+                    $this->FazPublish("DELETE PESSOA", $myObj);
                 }
 
                 public function FazPublish($canal, $msg)
