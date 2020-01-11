@@ -34,13 +34,21 @@ class MarcController extends ActiveController
         }
 
         public function actionIndex(){
+          $actoken = Yii::$app->request->get("access-token");
+                    $user = User::findIdentityByAccessToken($actoken);
+                     $profile = Pessoa::find()->where(['idUser' => $user->id])->one();
+
+         return $profile->marcacao;
+        }
+
+        public function actionIndexmarc($id){
            $actoken = Yii::$app->request->get("access-token");
             $user = User::findIdentityByAccessToken($actoken);
              $profile = Pessoa::find()->where(['idUser' => $user->id])->one();
-          $rec= MarcacaoConsulta::find()->where(['Pessoa_idPessoa' => $profile->idPessoa])->all();
+            $rec= MarcacaoConsulta::find()->where("idMarcacao_Consulta=".$id)->all();
 
 
-            return $rec;
+        return $rec;
 
         }
 

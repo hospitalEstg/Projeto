@@ -83,6 +83,8 @@ return [
                                     'PUT pessput/{id}'=> 'pessput',
                                     //'DELETE pessdel/{id}' =>'pessdel', // pessoa cannot delete
                                     'GET pesset/{limit}' => 'pessset',
+                                  'GET {id}/indexmarc'=>'indexmarc',
+
                                 ],
                                 'tokens' => [
                                 '{id}' => '<id:\\d+>', //O standard tem que aparecer!
