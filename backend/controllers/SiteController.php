@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Pessoa;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -14,13 +15,6 @@ use common\models\LoginForm;
  */
 class SiteController extends Controller
 {
-
-
-
-
-
-
-
 
   /*  if(\yii::$app->user->can('updatePost')) {
         echo ("Pode atualizar post");
@@ -79,7 +73,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = Pessoa::find()->all();
+
+
+        return $this->render('index', [
+            'model' => $model,
+        ]);
     }
 
     /**
