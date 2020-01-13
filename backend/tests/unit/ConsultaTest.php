@@ -46,7 +46,7 @@ class ConsultaTest extends \Codeception\Test\Unit
         }
 
 
-  
+
       public function testDataConsultaVazio(){
 
                               $consulta = $this->getConsultaValida();
