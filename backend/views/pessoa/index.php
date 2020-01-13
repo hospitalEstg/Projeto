@@ -12,14 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pessoa-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Pessoa', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
 
-        <?php foreach($pessoas as $pessoa) { ?>
+        <?php foreach($pessoas as $pessoa) {
+            if ($pessoa->TipoUtilizador == 'Utente') {
+            ?>
                            <table class="table table-striped table-bordered">
                            <tr>
                            <th> Nome Utente </th>
@@ -49,8 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                              <td>
-                                    <?= Html::a('Editar', ['update'], ['class' => 'btn btn-success']) ?>
-                                    <?= Html::a('Ver', ['view'], ['class' => 'btn btn-success']) ?>
+                                 <?= Html::a('Update', ['update', 'id' => $pessoa->idPessoa], ['class' => 'btn btn-primary']) ?>
+                                 <?= Html::a('Delete', ['delete', 'id' => $pessoa->idPessoa], [
+                                     'class' => 'btn btn-danger',
+                                     'data' => [
+                                         'confirm' => 'Are you sure you want to delete this item?',
+                                         'method' => 'post',
+                                     ],
+                                 ]) ?>
 
 
 
@@ -59,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            </tr>
                            </table>
 
-            <?php } ?>
+            <?php } }?>
 
 
 

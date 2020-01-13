@@ -65,7 +65,10 @@ HTML;
                                     </td>
 
                                     <td>
-                                        <?= $consulta->marcacao->Urgente; ?>
+                                        <?php if ($consulta->marcacao->Urgente == 0) {
+                                            echo "Não";
+                                        } else echo "Sim"; ?>
+
                                     </td>
 
 
@@ -110,25 +113,29 @@ HTML;
                 ?>
                 <div>
                     <?php
+                foreach ($model_1 as $marcacao) {
                     foreach ($model as $consulta) {
-
-                        if ($consulta->Estado == 0) {
+                        if ($marcacao->Consulta_idConsulta == $consulta->idConsulta ) {
                             ?>
 
                             <table class="table table-striped table-bordered">
                                 <tr>
-                                    <th> Descrição do Utente</th>
-                                    <th> Informação</th>
-                                    <th> Estado da Consulta</th>
-                                    <th> Tipo de Consulta</th>
-                                    <th> Urgente</th>
-                                    <th> Editar</th>
+                                    <th style="width: 120px;"> Tipo Consulta</th>
+                                    <th style="width: 250px;"> Descrição do Utente</th>
+                                    <th style="width: 250px;"> Informação</th>
+                                    <th style="width: 100px;"> Estado da Consulta</th>
+
+                                    <th style="width: 100px;"> Urgente</th>
+                                    <th style="width: 00px;"></th>
 
 
                                 </tr>
                                 <tr>
                                     <td>
-                                        <?= $consulta->marcacao->Descricao; ?>
+                                        <?= $consulta->TipoConsulta; ?>
+                                    </td>
+                                    <td>
+                                        <?= $marcacao->Descricao; ?>
                                     </td>
                                     <td>
                                         <?= $consulta->Descricao; ?>
@@ -140,25 +147,17 @@ HTML;
                                         } else echo "Consulta Realizada"; ?>
 
                                     </td>
-                                    <td>
-                                        <?= $consulta->TipoConsulta; ?>
-                                    </td>
+
 
                                     <td>
-                                        <?= $consulta->marcacao->Urgente; ?>
+                                        <?php if ($marcacao->Urgente == 0) {
+                                            echo "Não";
+                                        } else echo "Sim"; ?>
                                     </td>
 
 
                                     <td>
                                         <?= Html::a('Ver', ['view', 'id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Editar', ['update', 'id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Delete', ['delete', 'id' => $consulta->idConsulta], [
-                                            'class' => 'btn btn-danger',
-                                            'data' => [
-                                                'confirm' => 'Are you sure you want to delete this item?',
-                                                'method' => 'post',
-                                            ],
-                                        ]) ?>
                                     </td>
 
                                 </tr>
@@ -168,15 +167,8 @@ HTML;
 
                         }
                     }
+                }
                     ?>
-                </div>
-                <div class="col-lg-12"><hr></div>
-                <div class="col-lg-6" >
-                </div>
-                <div class="col-lg-6" >
-
-                    <br>
-                    <?= Html::a('Criar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
                 </div>
                 <?php
             }
