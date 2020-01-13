@@ -36,7 +36,7 @@ class ConsultaTest extends \Codeception\Test\Unit
              $consulta->DataConsulta = "2020-01-15";
              $consulta->hora = "11:10:00";
              $consulta->TipoConsulta = "ortopedia";
-             $consulta->Descricao = "teste funcional";
+             $consulta->Descricao = 'teste funcional';
              $consulta->Estado = "0";
              $consulta->idMedico = "2";
              $consulta->idFuncionario = "3";
@@ -46,13 +46,7 @@ class ConsultaTest extends \Codeception\Test\Unit
         }
 
 
-    public function testConsultaValida(){
-        $consulta = new Consulta();
-
-        $this->assertTrue($consulta->validate());
-
-    }
-
+  
       public function testDataConsultaVazio(){
 
                               $consulta = $this->getConsultaValida();
