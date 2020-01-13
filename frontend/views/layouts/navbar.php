@@ -16,6 +16,7 @@ if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     $menuItems[] = ['label' => 'Registar', 'url' => ['/site/signup']];
 } else {
+    $menuItems[] = ['label' => 'Consultas', 'url' => ['site/consulta']];
     $menuItems[] = ['label' => 'Perfil', 'url' => ['pessoa/view?id=' . Yii::$app->user->identity->pessoa->idPessoa]];
     $menuItems[] = '<li>'
         . Html::beginForm(['/site/logout'], 'post')
