@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="consulta-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->idConsulta], ['class' => 'btn btn-primary']) ?>

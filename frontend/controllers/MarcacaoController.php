@@ -7,6 +7,7 @@ use Yii;
 use common\models\MarcacaoConsulta;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -73,15 +74,19 @@ class MarcacaoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new MarcacaoConsulta();
+        if (Yii::$app->user->can('criarMarcacaoConsultas')){
+            $model = new MarcacaoConsulta();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idMarcacao_Consulta' => $model->idMarcacao_Consulta, 'Pessoa_idPessoa' => $model->Pessoa_idPessoa]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'idMarcacao_Consulta' => $model->idMarcacao_Consulta, 'Pessoa_idPessoa' => $model->Pessoa_idPessoa]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

@@ -6,6 +6,7 @@ use Yii;
 use common\models\Receita;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -64,15 +65,20 @@ class ReceitaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Receita();
+        if (Yii::$app->user->can('criarMedicamento')) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idReceita]);
+            $model = new Receita();
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idReceita]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

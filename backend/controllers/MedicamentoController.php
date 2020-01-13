@@ -6,6 +6,7 @@ use Yii;
 use common\models\Medicamento;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -64,15 +65,20 @@ class MedicamentoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Medicamento();
+        if (Yii::$app->user->can('criarMedicamento')){
+            $model = new Medicamento();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idMedicamento]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idMedicamento]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

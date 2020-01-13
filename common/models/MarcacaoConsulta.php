@@ -74,7 +74,7 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
         return $this->hasOne(Pessoa::className(), ['idPessoa' => 'Pessoa_idPessoa']);
     }
 
-
+/*
    public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
@@ -135,4 +135,5 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
                         {
                         }
             }
+*/
 }

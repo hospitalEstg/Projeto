@@ -2,52 +2,83 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Hospital ESTG';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <?php
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+    if (Yii::$app->user->isGuest) {
+        echo <<<HTML
+         <h1>Não logado</h1>
+HTML;
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    } else {
+        if (Yii::$app->user->identity->pessoa->TipoUtilizador == 'Utente'){
+            echo <<<HTML
+         <h1>Não está autorizado</h1>
+HTML;
+        }
+        if (Yii::$app->user->identity->pessoa->TipoUtilizador == 'Medico'){
+            $utilizador = Yii::$app->user->identity->pessoa->Nome;
 
-    <div class="body-content">
+            echo <<<HTML
+          <div class="body-content">
+          <h3><b>Médico :</b> $utilizador</h3>
+                    <div class="row consulta-layout">
+                        <a href="consulta/index">
+                        <div class="col-lg-4 consulta-layout-3">
+                            <img src="/img/icone_consulta.png" alt="as" height="100px">
+                            <h1><b>Consultas</b></h1>
+                        </div>
+                        </a>
+                    
+                        <a href="ftecnica/index">
+                        <div class="col-lg-4 consulta-layout-1">
+                            <img src="/img/icone_ficha.png" alt="as" height="100px">
+                            <h1><b>Ficha Clinica</b></h1>
+                        </div>
+                        </a>
+                        
+                         <a href="receita/index">
+                        <div class="col-lg-4 consulta-layout-3">
+                            <img src="/img/icone_medico.png" alt="as" height="100px">
+                            <h1><b>Receitas</b></h1>
+                        </div>
+                        </a>
+                    </div>           
+                </div>
+HTML;
+        }
+        if (Yii::$app->user->identity->pessoa->TipoUtilizador == 'Funcionario'){
+            $utilizador = Yii::$app->user->identity->pessoa->Nome;
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            echo <<<HTML
+                   <div class="body-content">
+          <h3><b>Funcionário :</b> $utilizador</h3>
+                    <div class="row consulta-layout">
+                        <a href="pessoa/index">
+                        <div class="col-lg-6 consulta-layout-1">
+                            <img src="/img/icone_ficha.png" alt="as" height="100px">
+                            <h1><b>Utentes</b></h1>
+                        </div>
+                        </a>
+                        
+                        <a href="consulta/index">
+                        <div class="col-lg-6 consulta-layout-3">
+                            <img src="/img/icone_consulta.png" alt="as" height="100px">
+                            <h1><b>Consultas</b></h1>
+                        </div>
+                        </a>
+                    
+                    </div>           
+                </div>
+HTML;
+        }
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+    }
+    ?>
 </div>

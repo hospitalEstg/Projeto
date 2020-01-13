@@ -5,7 +5,9 @@ namespace backend\controllers;
 use Yii;
 use common\models\FichaTecnica;
 use yii\data\ActiveDataProvider;
+use yii\db\Exception;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -64,15 +66,20 @@ class FtecnicaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new FichaTecnica();
+        if (Yii::$app->user->can('criarFichatecnica')) {
+            $model = new FichaTecnica();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idFichaClinica]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idFichaClinica]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -84,15 +91,19 @@ class FtecnicaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if (Yii::$app->user->can('alterarFichatecnica')) {
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idFichaClinica]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idFichaClinica]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -104,9 +115,13 @@ class FtecnicaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (Yii::$app->user->can('apagarFichatecnica')) {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
+        }
     }
 
     /**

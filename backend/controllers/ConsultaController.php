@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\MarcacaoConsulta;
 use common\models\Pessoa;
+use yii\web\ForbiddenHttpException;
 
 /**
  * ConsultaController implements the CRUD actions for Consulta model.
@@ -154,21 +155,27 @@ class ConsultaController extends Controller
      */
     public function actionCreate($idMarcacao_Consulta)
     {
-        $model = new Consulta();
-        if ($model->load(Yii::$app->request->post())) {
-           if ($model->save()) {
+        if( Yii::$app->user->can ('criarConsultas')){
 
-               $pedido= MarcacaoConsulta::findOne($idMarcacao_Consulta);
-               $pedido->Consulta_idConsulta = $model->idConsulta;
+            $model = new Consulta();
+            if ($model->load(Yii::$app->request->post())) {
+                if ($model->save()) {
 
-               $pedido->save();
+                    $pedido= MarcacaoConsulta::findOne($idMarcacao_Consulta);
+                    $pedido->Consulta_idConsulta = $model->idConsulta;
 
-                return $this->redirect(['view', 'id' => $model->idConsulta]);
+                    $pedido->save();
+
+                    return $this->redirect(['view', 'id' => $model->idConsulta]);
+                }
             }
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+
 }
     /**
      * Updates an existing Consulta model.
@@ -179,15 +186,19 @@ class ConsultaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if (Yii::$app->user->can('alterarConsulta')) {
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idConsulta]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idConsulta]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -199,9 +210,13 @@ class ConsultaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (Yii::$app->user->can('apagarConsultas')) {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }else{
+            throw new ForbiddenHttpException('Não tem permissões');
+        }
     }
 
     /**
