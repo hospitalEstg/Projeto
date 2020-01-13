@@ -30,25 +30,26 @@ HTML;
 
                 <div>
                     <?php
+                foreach ($model_1 as $marcacao) {
                     foreach ($model as $consulta) {
 
-                        if ($consulta->Estado == 0 && $consulta->idMedico == Yii::$app->user->identity->pessoa->idPessoa) {
+                        if ($consulta->Estado == 0 && $consulta->idMedico == Yii::$app->user->identity->pessoa->idPessoa && $marcacao->Consulta_idConsulta == $consulta->idConsulta ) {
                             ?>
 
                             <table class="table table-striped table-bordered">
                                 <tr>
-                                    <th> Descrição do Utente</th>
-                                    <th> Informação</th>
-                                    <th> Estado da Consulta</th>
-                                    <th> Tipo de Consulta</th>
-                                    <th> Urgente</th>
-                                    <th> Editar</th>
+                                    <th style="width: 120px;"> Tipo Consulta</th>
+                                    <th style="width: 250px;"> Informação</th>
+                                    <th style="width: 100px;"> Estado da Consulta</th>
+
+                                    <th style="width: 100px;"> Urgente</th>
+                                    <th style="width: 00px;"></th>
 
 
                                 </tr>
                                 <tr>
                                     <td>
-                                        <?= $consulta->marcacao->Descricao; ?>
+                                        <?= $consulta->TipoConsulta; ?>
                                     </td>
                                     <td>
                                         <?= $consulta->Descricao; ?>
@@ -60,15 +61,12 @@ HTML;
                                         } else echo "Consulta Realizada"; ?>
 
                                     </td>
-                                    <td>
-                                        <?= $consulta->TipoConsulta; ?>
-                                    </td>
+
 
                                     <td>
-                                        <?php if ($consulta->marcacao->Urgente == 0) {
+                                        <?php if ($marcacao->Urgente == 0) {
                                             echo "Não";
                                         } else echo "Sim"; ?>
-
                                     </td>
 
 
@@ -82,9 +80,9 @@ HTML;
                                                 'method' => 'post',
                                             ],
                                         ]) ?>
-                                        <?php   if($consulta->Estado==0)  ?>
+                                        <?php if ($consulta->Estado == 0) ?>
 
-                                        <?= Html::a(' Realizar Consulta', ['consulta','id' => $consulta->idConsulta], ['class' => 'btn btn-success'])
+                                        <?= Html::a(' Realizar Consulta', ['consulta', 'id' => $consulta->idConsulta], ['class' => 'btn btn-primary'])
 
                                         ?>
                                     </td>
@@ -93,18 +91,10 @@ HTML;
                             </table>
 
                             <?php
-
+                        }
                         }
                     }
                     ?>
-                </div>
-                <div class="col-lg-12"><hr></div>
-                <div class="col-lg-6" >
-                </div>
-                <div class="col-lg-6" >
-
-                    <br>
-                    <?= Html::a('Criar Consulta', ['consulta/create', 'idMarcacao_Consulta' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
                 </div>
                 <?php
             }
@@ -157,7 +147,7 @@ HTML;
 
 
                                     <td>
-                                        <?= Html::a('Ver', ['view', 'id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
+                                        <?= Html::a('Detalhes', ['view', 'id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
                                     </td>
 
                                 </tr>

@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Observacoes')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Consulta_idConsulta')->textInput() ?>
-
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
