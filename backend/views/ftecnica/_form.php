@@ -16,8 +16,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Observacoes')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Consulta_idConsulta')->textInput() ?>
-    
+    <?php $consulta = \yii\helpers\ArrayHelper::map(\common\models\Consulta::find()->where('idMedico' == Yii::$app->user->identity->pessoa->idPessoa)->all(),'idConsulta','hora');
+
+    echo $form->field($model, 'Consulta_idConsulta')->dropDownList($consulta) ->label('Consulta') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

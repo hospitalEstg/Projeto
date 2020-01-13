@@ -72,14 +72,6 @@ HTML;
 
                                     <td>
                                         <?= Html::a('Detalhes', ['view', 'id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Editar', ['update', 'id' => $consulta->idConsulta], ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Delete', ['delete', 'id' => $consulta->idConsulta], [
-                                            'class' => 'btn btn-danger',
-                                            'data' => [
-                                                'confirm' => 'Are you sure you want to delete this item?',
-                                                'method' => 'post',
-                                            ],
-                                        ]) ?>
                                         <?php if ($consulta->Estado == 0) ?>
 
                                         <?= Html::a(' Realizar Consulta', ['consulta', 'id' => $consulta->idConsulta], ['class' => 'btn btn-primary'])
