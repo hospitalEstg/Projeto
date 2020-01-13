@@ -35,9 +35,11 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
     {
         return [
             [['Pessoa_idPessoa', 'Descricao', 'Urgente'], 'required'],
+            [['Consulta_idConsulta'], 'unique'],
             [['Pessoa_idPessoa', 'Consulta_idConsulta', 'Estado', 'Urgente'], 'integer'],
             [['Descricao'], 'string', 'max' => 150],
-            [['Consulta_idConsulta'], 'unique'],
+            [['Estado'], 'default','value' => '0'],
+            [['Urgente'], 'number'],
             [['Consulta_idConsulta'], 'exist', 'skipOnError' => true, 'targetClass' => Consulta::className(), 'targetAttribute' => ['Consulta_idConsulta' => 'idConsulta']],
             [['Pessoa_idPessoa'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['Pessoa_idPessoa' => 'idPessoa']],
         ];

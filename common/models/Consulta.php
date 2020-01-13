@@ -40,10 +40,13 @@ class Consulta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['DataConsulta', 'hora', 'TipoConsulta', 'idMedico', 'idFuncionario'], 'required'],
+            [['DataConsulta', 'hora', 'TipoConsulta', 'idMedico', 'idFuncionario', 'Descricao'], 'required'],
             [['DataConsulta', 'hora'], 'safe'],
             [['Estado', 'idMedico', 'idFuncionario'], 'integer'],
-            [['TipoConsulta', 'Descricao'], 'string', 'max' => 45],
+            [['idMedico', 'idFuncionario'], 'number'],
+            [['Estado'], 'default','value' => '0'],
+             [['Descricao'], 'string', 'max' => 45],
+            [['TipoConsulta'], 'string', 'max' => 45],
             [['idFuncionario'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idFuncionario' => 'idPessoa']],
             [['idMedico'], 'exist', 'skipOnError' => true, 'targetClass' => Pessoa::className(), 'targetAttribute' => ['idMedico' => 'idPessoa']],
 
