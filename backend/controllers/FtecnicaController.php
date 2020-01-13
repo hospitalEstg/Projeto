@@ -2,6 +2,9 @@
 
 namespace backend\controllers;
 
+use common\models\Consulta;
+use common\models\MarcacaoConsulta;
+use common\models\Pessoa;
 use Yii;
 use common\models\FichaTecnica;
 use yii\data\ActiveDataProvider;
@@ -37,12 +40,20 @@ class FtecnicaController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => FichaTecnica::find(),
-        ]);
+        /* $dataProvider = new ActiveDataProvider([
+           'query' => FichaTecnica::find(),
+         ]);*/
+
+        $model =FichaTecnica::find()->all();
+        $model_1 =MarcacaoConsulta::find()->all();
+        $model_2=Consulta::find()->all();
+        $model_3=Pessoa::find()->all();
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'model' => $model,
+            'model_1' => $model_1,
+            'model_2' => $model_2,
+            'model_3' => $model_3,
         ]);
     }
 

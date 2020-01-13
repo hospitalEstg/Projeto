@@ -41,12 +41,14 @@ class ConsultaController extends Controller
         /*$dataProvider = new ActiveDataProvider([
             'query' => Consulta::find(),
         ]); */
-    $model = Consulta::find()->all();
+        $model = Consulta::find()->all();
+        $model_1 = MarcacaoConsulta::find()->all();
 
 
 
                 return $this->render('index', [
                     'model' => $model,
+                    'model_1' => $model_1,
 
 
                 ]);
@@ -234,4 +236,6 @@ class ConsultaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
 }

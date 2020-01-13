@@ -22,9 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NumIDCivil')->textInput() ?>
 
-    <?= $form->field($model, 'TipoUtilizador')->dropDownList([ 'Medico' => 'Medico', 'Utente' => 'Utente', 'Funcionario' => 'Funcionario', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'idUser')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

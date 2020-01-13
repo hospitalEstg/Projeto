@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Receita */
@@ -12,11 +13,23 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'DataReceita')->textInput() ?>
+    <?= $form->field($model, 'DataReceita')
+        ->label('Data da Consulta ')
+        ->widget(
+            DatePicker::className(), [
+            'inline' => true,
+            'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+            'clientOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]);?>
 
     <?= $form->field($model, 'Prescricao')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Consulta_idConsulta')->textInput() ?>
+    <?php $consulta = \yii\helpers\ArrayHelper::map(\common\models\Consulta::find()->where('idMedico' == Yii::$app->user->identity->pessoa->idPessoa)->all(),'idConsulta','hora');
+
+    echo $form->field($model, 'Consulta_idConsulta')->dropDownList($consulta) ->label('Consulta') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
