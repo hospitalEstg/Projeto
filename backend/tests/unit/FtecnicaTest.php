@@ -53,7 +53,7 @@ class FtecnicaTest extends \Codeception\Test\Unit
     public function testAtualizarRegisto()
 
     {
-        $this->tester->haveRecord(FichaTecnica::class, ['Ficheiro' => 'teste alterado', 'Observacoes' => 'teste alterado', 'Consulta_idConsulta' => '1']);
+       $this->tester->haveRecord(FichaTecnica::class, ['Ficheiro' => 'teste alterado', 'Observacoes' => 'teste alterado', 'Consulta_idConsulta' => '1']);
         $u = FichaTecnica::findOne(['Ficheiro' => 'teste alterado']);
         $u->Ficheiro = "asd";
         $u->save();

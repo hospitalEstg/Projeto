@@ -109,4 +109,6 @@ class ConsultaTest extends \Codeception\Test\Unit
                   $this->assertFalse($consulta->validate());
 
                             }
+
+
 }

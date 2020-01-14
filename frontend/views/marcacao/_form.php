@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 <div class="marcacao-consulta-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'marcacao-form']); ?>
 
     <?= $form->field($model, 'Pessoa_idPessoa')->hiddenInput(['value'=>Yii::$app->user->identity->pessoa->idPessoa])->label(false) ?>
 
@@ -17,14 +17,10 @@ use yii\widgets\ActiveForm;
 
     <div class="col-lg-6" >
 
-        <?= $form->field($model, 'Estado')->dropDownList(
-            ['0' => 'Por marcar'
-            ]) ?>
+   <?= $form->field($model, 'Estado')->textInput() ?>
 
-        <?= $form->field($model, 'Urgente')->dropDownList(
-            [   '0' => 'Não',
-                '1' => 'Sim'
-            ]) ?>
+        <?= $form->field($model, 'Urgente')->textInput() ?>
+
 
     </div>
     <div class="col-lg-6" >

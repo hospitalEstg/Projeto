@@ -128,7 +128,7 @@ class PessoaTest extends \Codeception\Test\Unit
     {
         $u = Pessoa::findOne(['Nome' => 'Jose']);
         $u->delete();
-        $this->tester->cantSeeRecord(Pessoa::class, ['idUser' => '1', 'Nome' => 'Jose', 'DataNascimento' => '2020-01-10', 'Morada' => 'Fatima', 'NumUtenteSaude' => '123456789', 'NumIDCivil' => '123456789', 'TipoUtilizador' => 'Medico']);
+       $this->tester->cantSeeRecord(Pessoa::class, ['idUser' => '1', 'Nome' => 'Jose', 'DataNascimento' => '2020-01-10', 'Morada' => 'Fatima', 'NumUtenteSaude' => '123456789', 'NumIDCivil' => '123456789', 'TipoUtilizador' => 'Medico']);
     }
 
 }

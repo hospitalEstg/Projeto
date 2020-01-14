@@ -34,14 +34,8 @@ class MarcacaoCest
             $I->see('Marcações');
 
             $I->click('Marcações');
-          //  $I->reloadPage();
-            //$I->click('Marcar Consulta');
-           // $I->seeElement(Locator::find('td', ['descricao' => 'xzxzxz']));
-          // $I->see('micaela');
-          //$I->seeElement('Adicionar a consulta', ['descricao'=>'xzxzxz']);
-          //$I->see('xzxzxz');
-
-
+            $I->see('xzxzxz');
+            $I->click('Adicionar a consulta', ['Descricao'=> 'xzxzxz']);
 
            }
 }

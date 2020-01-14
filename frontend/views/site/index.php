@@ -34,14 +34,14 @@ HTML;
                         </div>
                         </a>
                         
-                        <a href="ftecnica/index">
+                        <a href="/ftecnica/index">
                         <div class="col-lg-4 consulta-layout-2">
                             <img src="/img/icone_ficha.png" alt="as" height="100px">
                             <h1><b>Fichas Técnicas</b></h1>
                         </div>
                         </a>
                         
-                        <a href="receita/index">
+                        <a href="/receita/index">
                         <div class="col-lg-4 consulta-layout-3">
                             <img src="/img/icone_medico.png" alt="as" height="100px">
                             <h1><b>Receitas Médicas</b></h1>

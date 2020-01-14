@@ -24,7 +24,7 @@ class RegistarCest
 
         $I->click('Signup', 'button');
     }
-    public function RegistarFuncioario(FunctionalTester $I)
+    public function RegistarFuncionario(FunctionalTester $I)
     {
         $I->amOnPage("/");
         $I->click('Registar');

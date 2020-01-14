@@ -22,7 +22,14 @@ class MarcacaoCest
             $I->see('Próximas Consultas');
 
             $I->see('Marcar Consulta');
-                        //$I->click('Marcar Consulta');
-          //$I->click('Marcar Consulta', 'a');
+            $I->click('Marcar Consulta');
+            $I->fillField('Estado', '0');
+            $I->fillField('Urgente', '1');
+            $I->fillField('Descricao', 'teste funcional 2');
+            $I->click('Save', 'button');
+
+
+
+
     }
 }
