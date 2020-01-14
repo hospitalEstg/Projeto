@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <div class="col-lg-4">
         <?= $form->field($model, 'DataConsulta')
-            ->label('Data da Consulta ')
+            ->label('Data da Consulta')
             ->widget(
                 DatePicker::className(), [
                 'inline' => true,

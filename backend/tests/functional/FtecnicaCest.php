@@ -1,14 +1,14 @@
-<?php namespace backend\tests;
+<?php namespace backend\tests\functional;
+use backend\tests\FunctionalTester;
 
-class FtecnicaCest extends \Codeception\Test\Unit
+class FtecnicaCest
 {
-    /**
-     * @var \backend\tests\FunctionalTester
-     */
-    protected $tester;
+    public function _before(FunctionalTester $I)
+    {
+    }
 
-
-    public function testEntraFtecnica(FunctionalTester $I)
+    // tests
+    public function verftecnica(FunctionalTester $I)
     {
         $I->amOnPage("/");
         $I->click('Login');
@@ -16,6 +16,11 @@ class FtecnicaCest extends \Codeception\Test\Unit
         $I->fillField('LoginForm[password]', 'qweqwe');
         $I->click('Login', 'button');
         $I->click('#ftecnica');
+    }
+
+    public function criarftecnica(FunctionalTester $I)
+    {
+        $I->amOnPage("/ftecnica/create");
 
     }
 }

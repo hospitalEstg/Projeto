@@ -41,7 +41,8 @@ use dosamigos\datepicker\DatePicker;
 
                     <?= $form->field($model, 'NumIDCivil')->textInput() ->label('Número de Identificação Civil') ?>
 
-                    <?= $form->field($model, 'TipoUtilizador')->dropDownList(['Utente' => 'Utente', 'Medico' => 'Medico', 'Funcionario' => 'Funcionario', ]) ?>
+                    <?= $form->field($model, 'TipoUtilizador')->textInput() ->label('Tipo Utilizador')  ?>
+
 
 
                 <div class="form-group">

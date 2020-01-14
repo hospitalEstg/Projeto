@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Consulta */
@@ -17,19 +18,19 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 
-
 <div>
-<?php echo "Nome Utente: ". $model->marcacao->pessoa->Nome; ?>
 
-<
+<?php echo "<h3><b>Nome Utente:</b> ". $model->marcacao->pessoa->Nome . '</h3>'; ?>
 
-<div >
+    <hr>
 
+<div class="col-lg-6 ">
+    <h2><b>Ficha Clinica</b></h2>
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($ftec, 'Ficheiro')->textInput() ?>
 
-    <?= $form->field($ftec, 'Observacoes')->textInput() ?>
+    <?= $form->field($ftec, 'Observacoes')->textInput()->label('Observações') ?>
 
 
     <div class="form-group">
@@ -44,24 +45,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
-<div class="receita-form">
-
+<div class="col-lg-6 ">
+    <h2><b>Receita médica</b></h2>
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($rec, 'DataReceita')->textInput() ?>
 
-    <?= $form->field($rec, 'Prescricao')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($rec, 'Prescricao')->textInput(['maxlength' => true])->label('Prescrição') ?>
 
+    <?= $form->field($med, 'Nome')->textInput(['maxlength' => true])->label('Nome Medicamento') ?>
 
-
-
-
-    <?= $form->field($med, 'Nome')->textInput(['maxlength' => true]) ?>
-
-
-   /* <?= $form->field($model, 'Quantidade')->textInput() ?>
-
-    <?= $form->field($model, 'Dosagem_Diario')->textInput() ?>*/
+    <?= $form->field($rec, 'DataReceita')
+        ->label('Data da Receita ')
+        ->widget(
+            DatePicker::className(), [
+            'inline' => true,
+            'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+            'clientOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]);?>
     
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
