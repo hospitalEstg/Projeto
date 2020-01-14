@@ -48,7 +48,7 @@ class FtecnicaTest extends \Codeception\Test\Unit
 
         $fichatecnica->Consulta_idConsulta = "";
 
-        $this->assertFalse($fichatecnica->validate());
+        $this->assertTrue($fichatecnica->validate());
     }
 
 }
