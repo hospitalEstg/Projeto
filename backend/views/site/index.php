@@ -33,7 +33,7 @@ HTML;
                         </div>
                         </a>
                     
-                        <a href="ftecnica/index">
+                        <a href="ftecnica/index" id="ftecnica">
                         <div class="col-lg-4 consulta-layout-1">
                             <img src="/img/icone_ficha.png" alt="as" height="100px">
                             <h1><b>Ficha Clinica</b></h1>
