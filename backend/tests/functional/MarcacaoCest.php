@@ -17,7 +17,13 @@ class MarcacaoCest
     public function testSomeFeature(FunctionalTester $I)
            {
 
-          
+             /*  $I->amOnPage('/site/login');
+               $I->fillField('LoginForm[username]', 'funcionarioo');
+                $I->fillField('LoginForm[password]', 'micaela');
+               $I->click('login', 'button');
+               //$I->click('Utentes');
+
+        */
 
 
             $I->amOnPage('site/login');
@@ -28,9 +34,8 @@ class MarcacaoCest
             $I->see('Marcações');
 
             $I->click('Marcações');
-
-           // $I->see('xzxzxz');
-            //$I->click('Adicionar a consulta', ['Descricao'=> 'xzxzxz']);
+            $I->see('xzxzxz');
+            $I->click('Adicionar a consulta', ['Descricao'=> 'xzxzxz']);
 
            }
 }
