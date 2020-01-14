@@ -10,9 +10,7 @@ $this->title = 'Ficha Tecnicas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ficha-tecnica-index">
-    <p>
-        <?= Html::a('Create Ficha Tecnica', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 
    <?php
             foreach ($model_3 as $pessoa){
@@ -33,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><?= Html::a('Ver detalhes', ['view', 'id' => $ficha->idFichaClinica], ['class' => 'btn btn-primary']) ?></td>
+                                        <td><?= Html::a('Ver detalhes', ['view', 'id' => $ficha->idFichaClinica], ['class' => 'btn btn-primary']) ?>
+                                        </td>
                                     </tr>
                                 </table>
                                 <br>

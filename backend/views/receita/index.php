@@ -10,9 +10,7 @@ $this->title = 'Receitas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="receita-index">
-    <p>
-        <?= Html::a('Create Receita', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 
     <?php
     foreach ($model_3 as $pessoa){

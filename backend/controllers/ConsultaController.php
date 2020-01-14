@@ -104,7 +104,7 @@ class ConsultaController extends Controller
                   $ftec->Consulta_idConsulta = $model->idConsulta;
 
                     $ftec->save();
-                    return $this->redirect(['view', 'id' => $model->idConsulta]);
+
 
             }
 
@@ -112,7 +112,7 @@ class ConsultaController extends Controller
            $med = new \common\models\Medicamento();
            //$recmed = new \common\models\ReceitaMedicamento();
 
-            if ($rec->load(Yii::$app->request->post()) && $med->load(Yii::$app->request->post()) &&  $recmed->load(Yii::$app->request->post())) {
+            if ($rec->load(Yii::$app->request->post()) && $med->load(Yii::$app->request->post())) {
 
                 $model = Consulta::findOne($id);
                 $rec->Consulta_idConsulta = $model->idConsulta;
