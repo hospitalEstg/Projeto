@@ -50,5 +50,24 @@ class FtecnicaTest extends \Codeception\Test\Unit
 
         $this->assertTrue($fichatecnica->validate());
     }
+    public function testAtualizarRegisto()
+
+    {
+        $this->tester->haveRecord(FichaTecnica::class, ['Ficheiro' => 'teste alterado', 'Observacoes' => 'teste alterado', 'Consulta_idConsulta' => '1']);
+        $u = FichaTecnica::findOne(['Ficheiro' => 'teste alterado']);
+        $u->Ficheiro = "asd";
+        $u->save();
+    }
+
+
+
+    public function testRemoverRegisto()
+
+    {
+        $this->tester->haveRecord(FichaTecnica::class, ['Ficheiro' => 'teste alterado', 'Observacoes' => 'teste alterado', 'Consulta_idConsulta' => '1'], "Registo inexistente!");
+        $u = FichaTecnica::findOne(['Ficheiro' => 'teste alterado']);
+        $u->delete();
+        $this->tester->cantSeeRecord(FichaTecnica::class, ['Ficheiro' => 'teste alterado', 'Observacoes' => 'teste alterado', 'Consulta_idConsulta' => '1']);
+    }
 
 }
