@@ -63,6 +63,8 @@ return [
                             'api/cons',
                             'api/marc',
                              'api/pess',
+                             'api/ftec',
+                             'api/rec',
 
 
                            'api/users',

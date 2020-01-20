@@ -112,7 +112,7 @@ class Consulta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Receita::className(), ['Consulta_idConsulta' => 'idConsulta']);
     }
-/*
+
       public function afterSave($insert, $changedAttributes)
         {
             parent::afterSave($insert, $changedAttributes);
@@ -175,5 +175,5 @@ class Consulta extends \yii\db\ActiveRecord
                     {
                     }
         }
-*/
+
 }

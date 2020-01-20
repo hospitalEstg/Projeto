@@ -14,7 +14,7 @@ class MarcacaoCest
 
             $I->amOnPage('site/login');
             $I->click('Login');
-            $I->fillField('LoginForm[username]', 'rafa');
+            $I->fillField('LoginForm[username]', 'micaelaa');
             $I->fillField('LoginForm[password]', 'micaela');
             $I->click('Login', 'button');
             $I->see('Consultas');

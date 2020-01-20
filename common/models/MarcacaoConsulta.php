@@ -76,12 +76,12 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
         return $this->hasOne(Pessoa::className(), ['idPessoa' => 'Pessoa_idPessoa']);
     }
 
-/*
-   public function afterSave($insert, $changedAttributes)
+
+  /* public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
 
-        $idMarcacao_Consulta= $this->$idMarcacao_Consulta;
+        //$idMarcacao_Consulta= $this->$idMarcacao_Consulta;
         $Pessoa_idPessoa = $this->Pessoa_idPessoa;
         $Consulta_idConsulta = $this->Consulta_idConsulta;
         $Estado = $this->Estado;
@@ -91,7 +91,7 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
 
         $myObj = new MarcacaoConsulta();
 
-        $myObj->idMarcacao_Consulta = $idMarcacao_Consulta;
+        //$myObj->idMarcacao_Consulta = $idMarcacao_Consulta;
         $myObj->Pessoa_idPessoa = $Pessoa_idPessoa;
         $myObj->Consulta_idConsulta = $Consulta_idConsulta;
         $myObj->Estado = $Estado;
@@ -136,6 +136,8 @@ class MarcacaoConsulta extends \yii\db\ActiveRecord
                         }catch (\Exception $X)
                         {
                         }
-            }
-*/
+            }*/
+
 }
+
+// yii serve --docroot="frontend/web/"
