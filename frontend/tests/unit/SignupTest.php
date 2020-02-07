@@ -22,7 +22,7 @@ class SignupTest extends \Codeception\Test\Unit
 
         $user = new User();
 
-        $user->username = "Manuel";
+        $user->username = "ZeManel";
         $user->email = "manel@m.pt";
        $user->password= ("manuel123");
 

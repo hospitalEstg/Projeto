@@ -32,9 +32,9 @@ class MarcacaoTest extends \Codeception\Test\Unit
          $marcacao = new MarcacaoConsulta();
 
         $marcacao->Pessoa_idPessoa = '1';
-         //$marcacao->Consulta_idConsulta = '3';
+         //$marcacao->Consulta_idConsulta = '';
          $marcacao->Estado = "0";
-         $marcacao->Descricao = 'teste funcional';
+         $marcacao->Descricao = 'teste unit';
          $marcacao->Urgente = '1';
 
          return $marcacao;
@@ -92,14 +92,14 @@ class MarcacaoTest extends \Codeception\Test\Unit
     public function testUpdateRegistoExistente()
         {
 
-            $descricao_antiga = 'teste funcional';
+            $descricao_antiga = 'xzxzxz';
             $descricao_nova = 'teste_marcacao';
 
             $this->tester->seeRecord(MarcacaoConsulta::class, ['Descricao' => $descricao_antiga]);
             $this->tester->dontSeeRecord(MarcacaoConsulta::class, ['Descricao' => $descricao_nova]);
 
             $marcacao = MarcacaoConsulta::find()->where(['Descricao' => $descricao_antiga])->one();
-           // $marcacao = MarcacaoConsulta::findo
+
 
             $marcacao->Descricao = $descricao_nova;
             $marcacao->save();

@@ -20,7 +20,7 @@ class FtecnicaCest
 
     public function criarftecnica(FunctionalTester $I)
     {
-        $I->amOnPage("/ftecnica/create");
+
 
     }
 }

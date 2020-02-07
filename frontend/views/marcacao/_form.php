@@ -19,7 +19,10 @@ use yii\widgets\ActiveForm;
 
    <?= $form->field($model, 'Estado')->textInput() ?>
 
-        <?= $form->field($model, 'Urgente')->textInput() ?>
+        <?= $form->field($model, 'Urgente')->dropDownList(
+                                              ['0' => 'Não Urgente',
+                                               '1' => 'Urgente',
+                                                   ]); ?>
 
 
     </div>

@@ -32,7 +32,7 @@ class FtecnicaTest extends \Codeception\Test\Unit
         $fichatecnica->Observacoes = "teste";
         $fichatecnica->Consulta_idConsulta= "1";
 
-        $fichatecnica->save();
+       return $fichatecnica;
     }
 
     public function testFtecnicaValida()
@@ -44,12 +44,14 @@ class FtecnicaTest extends \Codeception\Test\Unit
 
     public function testConsulta_idConsultaFtecnicaVazio()
     {
-        $fichatecnica = new FichaTecnica();
+        $fichatecnica = $this->getFtecnicaValida();
 
         $fichatecnica->Consulta_idConsulta = "";
 
-        $this->assertTrue($fichatecnica->validate());
+        $this->assertFalse($fichatecnica->validate());
     }
+
+
     public function testAtualizarRegisto()
 
     {

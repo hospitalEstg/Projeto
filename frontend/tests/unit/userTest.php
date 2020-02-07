@@ -34,39 +34,34 @@ class userTest extends \Codeception\Test\Unit
             $this->tester->assertTrue($user->validate(), "Utilizador está vazio");
         }
 
-        public function testIdVazio()
-        {
-            $user = new User();
-            $user->id = "";
-            $this->tester->assertTrue($user->validate());
-        }
+
 
         public function testUsernameVazio()
         {
             $user = new User();
             $user->username = "";
-            $this->tester->assertTrue($user->validate());
+            $this->tester->assertFalse($user->validate());
         }
 
         public function testAuthKeyVazio()
         {
             $user = new User();
             $user->auth_key = "";
-            $this->tester->assertTrue($user->validate());
+            $this->tester->assertFalse($user->validate());
         }
 
         public function testPassHashVazio()
         {
             $user = new User();
             $user->password_hash = "";
-            $this->tester->assertTrue($user->validate());
+            $this->tester->assertFalse($user->validate());
         }
 
         public function testEmailVazio()
         {
             $user = new User();
             $user->email = "";
-            $this->tester->assertTrue($user->validate());
+            $this->tester->assertFalse($user->validate());
         }
 
         public function testRegisto()
